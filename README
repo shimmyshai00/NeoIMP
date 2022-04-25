@@ -1,0 +1,66 @@
+NeoIMP STUB version 0.0.1. The seed of a (hopefully) more maintainable GIMP alternative.
+(C) 2020-2022 Shimrra Shai. Distributed under GPLv3 and MPL licenses - see COPYING for more.
+
+Note
+----
+
+Another archive was previously here with this name but it never made a lot of sustained
+progress chiefly because of the author's obsessive wrastling with "good code rules". He has
+now taken a harsh stand against dogmatism about those rules, which will also be the subject
+of some YouTube educational videos to come. This archive intends for proper versioning of
+the project as well as making a source code that is style-compatible with a good quality C++
+IDE (thinking about Eclipse versus MSVS Code), so that it is easier to make progress. We've
+reset the version numbers as well and won't be so casual as to call this very STUBby program a
+"version 1.0". It's really a version 0.0.
+
+What is NeoIMP?
+---------------
+
+NeoIMP (Neo Image Manipulation Program) is a planned alternative to the GNU Image Manipulation
+Program, or GIMP, which was inspired by the fact that GIMP generally tends to both have for the
+user a rather less than stellar user experience, with a general overall "haphazard" feel to its
+interface, and second, because it has long been difficult for the project to gain new developers
+due in part to the relative difficulty of working with its code base, and third, compatibility
+with other, more popular and bigger packages like Photoshop is haphazard at best, if not
+nonexistent at worst.
+
+Our ultimate aim with NeoIMP is basically to make a tool that can do like at least 90% of what 
+the typical Photoshop user would do - especially a graphic designer or artist - in production, 
+with a user-friendly experience and a well-rounded toolset (NO to having to use a selection to
+draw a circle!). You may have heard of a free-beer web application called "Photopea", which is 
+similar. NeoIMP aims to be a free-liberty application to do the same thing and with the same 
+level of quality, and will eventually come in both desktop and Web versions.
+
+Because this is a rather large project, and because the principal author already has made a
+number of attempts that have never really come to completion due to general obsessiveness,
+feedback on this is rather welcome.
+
+Goals
+-----
+
+The very first release that WILL be posted to this site - which we are aiming to achieve within
+the next three megaseconds (35 days, or better, by UE+1653.000 000 Ms), will be pre-alpha
+0.0.1. As with our original plan, we will mark this as a STUB for recruiting further contributors
+to the project.
+
+This release aims to:
+
+    1. Support the loading and saving of PNG, JPG, and BMP image files, with single layers.
+    2. Support RGB and CMYK color formats in 8 and 16 bit depth alternatives.
+    3. Editing tools will be pan and zoom, selections, copy/paste, choosing a color, and
+       paint brush. Filters will be Gaussian blur and brightness/contrast.
+    4. Only the Background layer will be supported at this point. However, we aim to start
+       with nondestructive editing at the get-go in an easy to use way in that filters will
+       be applicable to a layer through a sort of reconfigurable pipeline, which can then
+       be destructively "baked" to a layer. So you will be able to apply Gaussian Blur, say,
+       reversibly, before making it an irreversible commit to the final layer.
+    5. UI organization will include "Episodes", which basically will in later releases, if
+       this pans out, allow the user to select to optionally show more or less tools in
+       their user interface, thus avoiding the kind of "everything everywhere" clutter in
+       GIMP. This will be the start of "Episode 1".
+
+However, INFRASTRUCTURE, away from the user, down in the code, will be the most important part,
+to ensure that we can support all the features wanted while keeping a clean and maintainable
+(defined by the author as "quick to add features with a minimum of new bugs and easy to get a
+new programmer up to speed on") code base.
+
