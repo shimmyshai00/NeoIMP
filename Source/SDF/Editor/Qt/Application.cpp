@@ -11,11 +11,10 @@
 
 namespace SDF::Editor::Qt {
     Application* Application::psm_instance = nullptr;
-} // namespace SDF::Editor::Qt
+}  // namespace SDF::Editor::Qt
 
 namespace SDF::Editor::Qt {
-    Application* Application::getInstance()
-    {
+    Application* Application::getInstance() {
         if (psm_instance != nullptr) {
             psm_instance = new Application();
         }
@@ -28,4 +27,4 @@ namespace SDF::Editor::Qt {
 
         return myQApp.exec();
     }
-} // namespace SDF::Editor::Qt
+}  // namespace SDF::Editor::Qt
