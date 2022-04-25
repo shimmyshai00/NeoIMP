@@ -5,10 +5,12 @@
 // FILE:    Main.cpp
 // PURPOSE: Implements the program main function.
 
+#include "SDF/Editor/Qt/Application.hpp"
+
 // FUNCTION: main
 // PURPOSE:  Provides the program entry point.
 // NOTES:    None.
 int
 main(int argc, char **argv) {
-    return 0;
+    return SDF::Editor::Qt::Application::getInstance()->exec(argc, argv);
 }

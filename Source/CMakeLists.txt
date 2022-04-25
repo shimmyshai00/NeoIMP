@@ -1,10 +1,11 @@
 # (C) 2020-2022. All rights reserved. See LICENSE for legal and redistribution terms.
 
-cmake_minimum_required(3.16.3)
+cmake_minimum_required(VERSION 3.16.3)
 project(NeoIMP)
-
-add_subdirectory(SDF)
 
 set(SRCS Main.cpp)
 
-add_executable(neoimp ${SRCS})
+add_executable(NeoIMP ${SRCS})
+target_link_libraries(NeoIMP Qt5::Widgets)
+
+add_subdirectory(SDF)
