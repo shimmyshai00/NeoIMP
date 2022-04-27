@@ -8,15 +8,17 @@
 // FILE:    IConnectable.hpp
 // PURPOSE: Defines the IConnectable interface.
 
-namespace SDF::Common {
+namespace SDF::Common
+{
     // CLASS:   IConnectable
     // PURPOSE: Defines an interface for objects that can be connected to others to produce a Connection handle.
-    class IConnectable {
-       public:
+    class IConnectable
+    {
+      public:
         virtual ~IConnectable() = 0;
 
         // the interface itself is null; just meant to serve as a reference.
     };
-}  // namespace SDF::Common
+} // namespace SDF::Common
 
-#endif  // SDF_COMMON_ICONNECTABLE_HPP
+#endif // SDF_COMMON_ICONNECTABLE_HPP

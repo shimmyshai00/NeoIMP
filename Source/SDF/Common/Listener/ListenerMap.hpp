@@ -16,13 +16,14 @@
 #include "../IDisconnector.hpp"
 #include "IListener.hpp"
 
-namespace SDF::Common::Listener {
+namespace SDF::Common::Listener
+{
     // CLASS:   ListenerMap
     // PURPOSE: Defines a map-like (actually multimap-like) collection of listeners, i.e. it indexes listeners for
     //          different "keys".
-    template <class KeyT, class... Args>
-    class ListenerMap : private IDisconnector {
-       public:
+    template <class KeyT, class... Args> class ListenerMap : private IDisconnector
+    {
+      public:
         // FUNCTION: ListenerMap
         // PURPOSE:  Construct a new listener map.
         // NOTES:    None.
@@ -35,18 +36,17 @@ namespace SDF::Common::Listener {
         Connection addListener(const KeyT &a_key, IListener<Args...> *pa_listener);
         Connection addListener(const KeyT &a_key, std::shared_ptr<IListener<Args...>> pa_listener);
 
-       private:
+      private:
         // to ensure the listeners are called in the order they are added
-        template <class T, class U>
-        using multimap_t = std::map<T, std::list<U>>;
+        template <class T, class U> using multimap_t = std::map<T, std::list<U>>;
 
         multimap_t<KeyT, IListener<Args...> *> m_listenerPtrs;
         multimap_t<KeyT, std::shared_ptr<IListener<Args...>>> m_listenerOwnerPtrs;
 
         void disconnectConnectable(IConnectable *pa_connectable);
     };
-}  // namespace SDF::Common::Listener
+} // namespace SDF::Common::Listener
 
 #include "ListenerMap.tpp"
 
-#endif  // SDF_COMMON_LISTENER_LISTENERMAP_HPP
+#endif // SDF_COMMON_LISTENER_LISTENERMAP_HPP

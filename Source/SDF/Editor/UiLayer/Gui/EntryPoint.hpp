@@ -14,17 +14,20 @@
 
 #include <fruit/fruit.h>
 
-namespace SDF::Editor::UiLayer::Gui {
+namespace SDF::Editor::UiLayer::Gui
+{
     // CLASS:   EntryPoint
     // PURPOSE: Defines the entry point for the GUI.
-    class EntryPoint : public IUiEntryPoint {
-       public:
+    class EntryPoint : public IUiEntryPoint
+    {
+      public:
         INJECT(EntryPoint(Common::Mvc::IViewProducer<> *a_mainWindowProducer));
 
         void startUi();
-       private:
+
+      private:
         Common::Mvc::IViewProducer<> *m_mainWindowProducer;
     };
-}  // namespace SDF::Editor::UiLayer::Gui
+} // namespace SDF::Editor::UiLayer::Gui
 
-#endif  // SDF_EDITOR_UILAYER_GUI_ENTRYPOINT_HPP
+#endif // SDF_EDITOR_UILAYER_GUI_ENTRYPOINT_HPP

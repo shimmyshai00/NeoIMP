@@ -10,12 +10,13 @@
 
 #include "../IConnectable.hpp"
 
-namespace SDF::Common::Listener {
+namespace SDF::Common::Listener
+{
     // CLASS:   IListener
     // PURPOSE: Defines an interface for generic listeners.
-    template <class... Args>
-    class IListener : public IConnectable {
-       public:
+    template <class... Args> class IListener : public IConnectable
+    {
+      public:
         virtual ~IListener() = default;
 
         // FUNCTION: notify
@@ -23,6 +24,6 @@ namespace SDF::Common::Listener {
         // NOTES:    None.
         virtual void notify(Args... as_args) = 0;
     };
-}  // namespace SDF::Common::Listener
+} // namespace SDF::Common::Listener
 
-#endif  // SDF_COMMON_LISTENER_ILISTENER_HPP
+#endif // SDF_COMMON_LISTENER_ILISTENER_HPP

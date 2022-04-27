@@ -7,6 +7,9 @@
 
 #include "IConnectable.hpp"
 
-namespace SDF::Common {
-    IConnectable::~IConnectable() {}
-}  // namespace SDF::Common
+namespace SDF::Common
+{
+    IConnectable::~IConnectable()
+    {
+    }
+} // namespace SDF::Common

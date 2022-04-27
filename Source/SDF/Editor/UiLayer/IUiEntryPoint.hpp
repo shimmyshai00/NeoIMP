@@ -8,11 +8,13 @@
 // FILE:    IUiEntryPoint.hpp
 // PURPOSE: Defines the IUiEntryPoint interface.
 
-namespace SDF::Editor::UiLayer {
+namespace SDF::Editor::UiLayer
+{
     // CLASS:   IUiEntryPoint
     // PURPOSE: Defines an entry point interface for starting an editor's user interface.
-    class IUiEntryPoint {
-       public:
+    class IUiEntryPoint
+    {
+      public:
         virtual ~IUiEntryPoint() = default;
 
         // FUNCTION: startUi
@@ -20,6 +22,6 @@ namespace SDF::Editor::UiLayer {
         // NOTES:    None.
         virtual void startUi() = 0;
     };
-}  // namespace SDF::Editor::UILayer
+} // namespace SDF::Editor::UiLayer
 
-#endif  // SDF_EDITOR_UILAYER_IUIENTRYPOINT_HPP
+#endif // SDF_EDITOR_UILAYER_IUIENTRYPOINT_HPP

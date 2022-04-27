@@ -15,12 +15,13 @@
 #include "../IDisconnector.hpp"
 #include "IListener.hpp"
 
-namespace SDF::Common::Listener {
+namespace SDF::Common::Listener
+{
     // CLASS:   ListenerList
     // PURPOSE: Defines a list-like collection of listeners, i.e. it just accumulates listeners.
-    template <class... Args>
-    class ListenerList : private IDisconnector {
-       public:
+    template <class... Args> class ListenerList : private IDisconnector
+    {
+      public:
         // FUNCTION: ListenerList
         // PURPOSE:  Construct a new listener list.
         // NOTES:    None.
@@ -33,14 +34,14 @@ namespace SDF::Common::Listener {
         Connection addListener(IListener<Args...> *pa_listener);
         Connection addListener(std::shared_ptr<IListener<Args...>> pa_listener);
 
-       private:
+      private:
         std::list<IListener<Args...> *> m_listenerPtrs;
         std::list<std::shared_ptr<IListener<Args...>>> m_listenerOwnerPtrs;
 
         void disconnectConnectable(IConnectable *pa_connectable);
     };
-}  // namespace SDF::Common::Listener
+} // namespace SDF::Common::Listener
 
 #include "ListenerList.tpp"
 
-#endif  // SDF_COMMON_LISTENER_LISTENERLIST_HPP
+#endif // SDF_COMMON_LISTENER_LISTENERLIST_HPP

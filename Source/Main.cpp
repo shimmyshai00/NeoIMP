@@ -10,4 +10,7 @@
 // FUNCTION: main
 // PURPOSE:  Provides the program entry point.
 // NOTES:    None.
-int main(int argc, char** argv) { return SDF::Editor::Qt::Application::getInstance()->exec(argc, argv); }
+int main(int argc, char **argv)
+{
+    return SDF::Editor::Qt::Application::getInstance()->exec(argc, argv);
+}
