@@ -12,32 +12,24 @@
 
 #include "../Exceptions.hpp"
 
-namespace SDF::Common::Listener
-{
-    template <class... Args> ListenerList<Args...>::ListenerList()
-    {
-    }
+namespace SDF::Common::Listener {
+    template <class... Args>
+    ListenerList<Args...>::ListenerList() {}
 
-    template <class... Args> Connection ListenerList<Args...>::addListener(IListener<Args...> *pa_listener)
-    {
-        if (std::find(m_listenerPtrs.begin(), m_listenerPtrs.end(), pa_listener) == m_listenerPtrs.end())
-        {
+    template <class... Args>
+    Connection ListenerList<Args...>::addListener(IListener<Args...> *pa_listener) {
+        if (std::find(m_listenerPtrs.begin(), m_listenerPtrs.end(), pa_listener) == m_listenerPtrs.end()) {
             m_listenerPtrs.push_back(pa_listener);
             return Connection(this, pa_listener);
-        }
-        else
-        {
+        } else {
             throw DuplicateListenerException();
         }
     }
 
     template <class... Args>
-    Connection ListenerList<Args...>::addListener(std::shared_ptr<IListener<Args...>> pa_listener)
-    {
-        for (auto it = m_listenerOwnerPtrs.begin(); it != m_listenerOwnerPtrs.end(); ++it)
-        {
-            if (it->get() == pa_listener)
-            {
+    Connection ListenerList<Args...>::addListener(std::shared_ptr<IListener<Args...>> pa_listener) {
+        for (auto it = m_listenerOwnerPtrs.begin(); it != m_listenerOwnerPtrs.end(); ++it) {
+            if (it->get() == pa_listener) {
                 throw DuplicateListenerException();
             }
         }
@@ -45,30 +37,24 @@ namespace SDF::Common::Listener
         m_listenerOwnerPtrs.push_back(pa_listener);
         return Connection(this, pa_listener.get());
     }
-} // namespace SDF::Common::Listener
+}  // namespace SDF::Common::Listener
 
-namespace SDF::Common::Listener
-{
+namespace SDF::Common::Listener {
     // Private members
-    template <class... Args> void ListenerList<Args...>::disconnectConnectable(IConnectable *pa_connectable)
-    {
-        if (std::find(m_listenerPtrs.begin(), m_listenerPtrs.end(), pa_connectable) != m_listenerPtrs.end())
-        {
+    template <class... Args>
+    void ListenerList<Args...>::disconnectConnectable(IConnectable *pa_connectable) {
+        if (std::find(m_listenerPtrs.begin(), m_listenerPtrs.end(), pa_connectable) != m_listenerPtrs.end()) {
             m_listenerPtrs.remove(pa_connectable);
-        }
-        else
-        {
+        } else {
             // It may be an owning reference. Eliminate this possibility.
-            for (auto it = m_listenerPtrs.begin(); it != m_listenerPtrs.end(); ++it)
-            {
-                if (it->get() == pa_connectable)
-                {
+            for (auto it = m_listenerPtrs.begin(); it != m_listenerPtrs.end(); ++it) {
+                if (it->get() == pa_connectable) {
                     m_listenerPtrs.erase(it);
                     break;
                 }
             }
         }
     }
-} // namespace SDF::Common::Listener
+}  // namespace SDF::Common::Listener
 
-#endif // SDF_COMMON_LISTENER_LISTENERLIST_TPP
+#endif  // SDF_COMMON_LISTENER_LISTENERLIST_TPP

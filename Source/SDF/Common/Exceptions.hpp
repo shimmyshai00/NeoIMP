@@ -10,19 +10,12 @@
 
 #include "../Error/Exception.hpp"
 
-namespace SDF::Common
-{
-    struct CommonException : Error::Exception
-    {
-    };
+namespace SDF::Common {
+    struct CommonException : Error::Exception {};
 
-    struct DuplicateListenerException : Error::LikelyBug<CommonException>
-    {
-        DuplicateListenerException()
-        {
-            whatPrintf("Tried to add duplicate of listener to container");
-        }
+    struct DuplicateListenerException : Error::LikelyBug<CommonException> {
+        DuplicateListenerException() { whatPrintf("Tried to add duplicate of listener to container"); }
     };
-} // namespace SDF::Common
+}  // namespace SDF::Common
 
-#endif // SDF_COMMON_EXCEPTIONS_HPP
+#endif  // SDF_COMMON_EXCEPTIONS_HPP

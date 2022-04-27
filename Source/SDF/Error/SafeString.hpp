@@ -13,30 +13,20 @@
 #include <cstdio>
 #include <cstring>
 
-namespace SDF::Error
-{
-    class SafeString
-    {
-      public:
-        SafeString() noexcept
-        {
-            stringBuf[0] = '\0';
-        }
+namespace SDF::Error {
+    class SafeString {
+       public:
+        SafeString() noexcept { stringBuf[0] = '\0'; }
 
-        SafeString(const char *initString) noexcept
-        {
+        SafeString(const char *initString) noexcept {
             strncpy(stringBuf, initString, c_maxStrLen);
             stringBuf[c_maxStrLen] = '\0';
         }
 
-        const char *get() const noexcept
-        {
-            return stringBuf;
-        }
+        const char *get() const noexcept { return stringBuf; }
 
         // like sprintf
-        void sPrintf(const char *fString, ...) noexcept
-        {
+        void sPrintf(const char *fString, ...) noexcept {
             va_list vl;
 
             va_start(vl, fString);
@@ -45,19 +35,15 @@ namespace SDF::Error
         }
 
         // like vsprintf
-        void vsPrintf(const char *fString, va_list vl) noexcept
-        {
-            vsnprintf(stringBuf, c_maxStrLen, fString, vl);
-        }
+        void vsPrintf(const char *fString, va_list vl) noexcept { vsnprintf(stringBuf, c_maxStrLen, fString, vl); }
 
-      private:
+       private:
         static const std::size_t c_maxStrLen = 1023;
         char stringBuf[c_maxStrLen + 1];
     };
 
     // Convenience methods.
-    static SafeString safePrintf(const char *fString, ...) noexcept
-    {
+    static SafeString safePrintf(const char *fString, ...) noexcept {
         SafeString rv;
         va_list vl;
 
@@ -67,6 +53,6 @@ namespace SDF::Error
 
         return rv;
     }
-} // namespace SDF::Error
+}  // namespace SDF::Error
 
-#endif // SDF_ERROR_SAFESTRING_HPP
+#endif  // SDF_ERROR_SAFESTRING_HPP

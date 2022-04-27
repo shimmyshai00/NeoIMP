@@ -11,13 +11,11 @@
 #include "IConnectable.hpp"
 #include "IDisconnector.hpp"
 
-namespace SDF::Common
-{
+namespace SDF::Common {
     // CLASS:   Connection
     // PURPOSE: Defines a connection handle for NeoIMP connectable objects to permit their disconnection after registry.
-    class Connection
-    {
-      public:
+    class Connection {
+       public:
         // FUNCTION: Connection
         // PURPOSE:  Constructs a new connection.
         // NOTES:    This function is NOT to be used by user code. IConnectable interfaces should NOT be publicly
@@ -29,10 +27,10 @@ namespace SDF::Common
         // NOTES:    None.
         void disconnect();
 
-      private:
+       private:
         IDisconnector *pm_disconnector;
         IConnectable *pm_connectable;
     };
-} // namespace SDF::Common
+}  // namespace SDF::Common
 
-#endif // SDF_COMMON_CONNECTION_HPP
+#endif  // SDF_COMMON_CONNECTION_HPP

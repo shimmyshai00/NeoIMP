@@ -10,14 +10,12 @@
 
 #include "IConnectable.hpp"
 
-namespace SDF::Common
-{
+namespace SDF::Common {
     // CLASS:   IDisconnector
     // PURPOSE: Defines an interface for disconnecting an IConnectable from an object (this is usually an interface to
     //          that object).
-    class IDisconnector
-    {
-      public:
+    class IDisconnector {
+       public:
         virtual ~IDisconnector() = default;
 
         // FUNCTION: disconnectConnectable
@@ -25,6 +23,6 @@ namespace SDF::Common
         // NOTES:    If the IConnectable is already disconnected, does nothing.
         virtual void disconnectConnectable(IConnectable *pa_connectable) = 0;
     };
-} // namespace SDF::Common
+}  // namespace SDF::Common
 
-#endif // SDF_COMMON_IDISCONNECTOR_HPP
+#endif  // SDF_COMMON_IDISCONNECTOR_HPP

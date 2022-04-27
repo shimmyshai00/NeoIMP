@@ -7,15 +7,9 @@
 
 #include "EntryPoint.hpp"
 
-namespace SDF::Editor::UiLayer::Gui
-{
+namespace SDF::Editor::UiLayer::Gui {
     EntryPoint::EntryPoint(Common::Mvc::IViewProducer<> *a_mainWindowProducer)
-        : m_mainWindowProducer(a_mainWindowProducer)
-    {
-    }
+        : m_mainWindowProducer(a_mainWindowProducer) {}
 
-    void EntryPoint::startUi()
-    {
-        m_mainWindowProducer->requestView();
-    }
-} // namespace SDF::Editor::UiLayer::Gui
+    void EntryPoint::startUi() { m_mainWindowProducer->requestView(); }
+}  // namespace SDF::Editor::UiLayer::Gui

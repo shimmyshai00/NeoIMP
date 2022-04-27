@@ -8,13 +8,12 @@
 // FILE:    IViewProducer.hpp
 // PURPOSE: Defines the IViewProducer interface.
 
-namespace SDF::Common::Mvc
-{
+namespace SDF::Common::Mvc {
     // CLASS:   IViewProducer
     // PURPOSE: Defines an interface for requesting creation of a new view by a controller.
-    template <class... Args> class IViewProducer
-    {
-      public:
+    template <class... Args>
+    class IViewProducer {
+       public:
         virtual ~IViewProducer() = default;
 
         // FUNCTION: requestView
@@ -27,19 +26,15 @@ namespace SDF::Common::Mvc
     };
 
     template <class ReturnIface, class... Args>
-    class AInteractiveViewProducer : public IViewProducer<ReturnIface, Args...>
-    {
-      public:
+    class AInteractiveViewProducer : public IViewProducer<ReturnIface, Args...> {
+       public:
         virtual ~AInteractiveViewProducer() = default;
 
         virtual ReturnIface *requestInteractiveView(Args... as_args) = 0;
 
         // just discard the interface, so we can adapt one to the other
-        void requestView(Args... as_args)
-        {
-            requestInteractiveView(as_args...);
-        }
+        void requestView(Args... as_args) { requestInteractiveView(as_args...); }
     };
-} // namespace SDF::Common::Mvc
+}  // namespace SDF::Common::Mvc
 
-#endif // SDF_COMMON_MVC_IVIEWPRODUCER_HPP
+#endif  // SDF_COMMON_MVC_IVIEWPRODUCER_HPP

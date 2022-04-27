@@ -7,19 +7,14 @@
 
 #include "Connection.hpp"
 
-namespace SDF::Common
-{
+namespace SDF::Common {
     Connection::Connection(IDisconnector *pa_disconnector, IConnectable *pa_connectable)
-        : pm_disconnector(pa_disconnector), pm_connectable(pa_connectable)
-    {
-    }
+        : pm_disconnector(pa_disconnector), pm_connectable(pa_connectable) {}
 
-    void Connection::disconnect()
-    {
-        if (pm_disconnector != nullptr)
-        {
+    void Connection::disconnect() {
+        if (pm_disconnector != nullptr) {
             pm_disconnector->disconnectConnectable(pm_connectable);
             pm_disconnector = nullptr;
         }
     }
-} // namespace SDF::Common
+}  // namespace SDF::Common

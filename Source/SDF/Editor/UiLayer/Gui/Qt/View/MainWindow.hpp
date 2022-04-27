@@ -8,23 +8,21 @@
 // FILE:    MainWindow.hpp
 // PURPOSE: Defines the MainWindow class.
 
-#include "../MvcAdapter/QtView.hpp"
-
 #include <QGridLayout>
 #include <QMainWindow>
 #include <QMenu>
 
-namespace SDF::Editor::UiLayer::Gui::Qt::View
-{
+#include "../MvcAdapter/QtView.hpp"
+
+namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   MainWindow
     // PURPOSE: Defines the Qt main window.
-    class MainWindow : public MvcAdapter::QtView<QMainWindow>
-    {
+    class MainWindow : public MvcAdapter::QtView<QMainWindow> {
         Q_OBJECT
-      public:
+       public:
         MainWindow();
 
-      private:
+       private:
         void createMenus();
         void createMenuActions();
 
@@ -38,7 +36,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View
         QMenu *m_selectMenu;
         QMenu *m_filterMenu;
         QMenu *m_helpMenu;
-      signals:
+       signals:
         // File
         void onExit();
 
@@ -56,6 +54,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View
 
         // Help
     };
-} // namespace SDF::Editor::UiLayer::Gui::Qt::View
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View
 
-#endif // SDF_EDITOR_UILAYER_GUI_QT_VIEW_MAINWINDOW_HPP
+#endif  // SDF_EDITOR_UILAYER_GUI_QT_VIEW_MAINWINDOW_HPP

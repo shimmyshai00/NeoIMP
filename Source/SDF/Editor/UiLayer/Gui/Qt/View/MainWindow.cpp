@@ -7,13 +7,11 @@
 
 #include "MainWindow.hpp"
 
-namespace SDF::Editor::UiLayer::Gui::Qt::View
-{
-    MainWindow::MainWindow()
-    {
+namespace SDF::Editor::UiLayer::Gui::Qt::View {
+    MainWindow::MainWindow() {
         QWidget *centralWidget = new QWidget();
         setCentralWidget(centralWidget);
 
         m_centralLayout = new QGridLayout(centralWidget);
     }
-} // namespace SDF::Editor::UiLayer::Gui::Qt::View
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View

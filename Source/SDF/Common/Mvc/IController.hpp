@@ -8,14 +8,13 @@
 // FILE:    IController.hpp
 // PURPOSE: Defines the IController interface.
 
-namespace SDF::Common::Mvc
-{
+namespace SDF::Common::Mvc {
     // CLASS:   IController
     // PURPOSE: Defines the interface for MVC controllers. An MVC controller is an event handler to be hooked to a UI
     //          element, or View.
-    template <class... Args> class IController
-    {
-      public:
+    template <class... Args>
+    class IController {
+       public:
         virtual ~IController() = default;
 
         // FUNCTION: onTriggered
@@ -23,6 +22,6 @@ namespace SDF::Common::Mvc
         // NOTES:    None.
         virtual void onTriggered(Args... as_args) = 0;
     };
-} // namespace SDF::Common::Mvc
+}  // namespace SDF::Common::Mvc
 
-#endif // SDF_COMMON_MVC_ICONTROLLER_HPP
+#endif  // SDF_COMMON_MVC_ICONTROLLER_HPP

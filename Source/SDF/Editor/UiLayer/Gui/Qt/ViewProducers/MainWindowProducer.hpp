@@ -10,17 +10,15 @@
 
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
 
-namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
-{
+namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
     // CLASS:   MainWindowProducer
     // PURPOSE: Produces the main window view.
-    class MainWindowProducer : public Common::Mvc::IViewProducer<>
-    {
-      public:
+    class MainWindowProducer : public Common::Mvc::IViewProducer<> {
+       public:
         MainWindowProducer();
 
         void requestView();
     };
-} // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
 
-#endif // SDF_EDITOR_UILAYER_GUI_QT_VIEWPRODUCERS_MAINWINDOWPRODUCER_HPP
+#endif  // SDF_EDITOR_UILAYER_GUI_QT_VIEWPRODUCERS_MAINWINDOWPRODUCER_HPP
