@@ -6,6 +6,6 @@ project(NeoIMP)
 set(SRCS Main.cpp)
 
 add_executable(NeoIMP ${SRCS})
-target_link_libraries(NeoIMP Qt5::Widgets)
+target_link_libraries(NeoIMP fruit Qt5::Widgets)
 
 add_subdirectory(SDF)

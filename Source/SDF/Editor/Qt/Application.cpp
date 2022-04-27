@@ -7,6 +7,8 @@
 
 #include "Application.hpp"
 
+#include "../UiLayer/getComponent.hpp"
+
 #include <QApplication>
 
 namespace SDF::Editor::Qt {
@@ -24,6 +26,11 @@ namespace SDF::Editor::Qt {
 
     int Application::exec(int a_argc, char **a_argv) {
         QApplication myQApp(a_argc, a_argv);
+
+        fruit::Injector<UiLayer::IUiEntryPoint> injector(UiLayer::getComponent);
+        UiLayer::IUiEntryPoint *entryPoint = injector.get<UiLayer::IUiEntryPoint *>();
+
+        entryPoint->startUi();
 
         return myQApp.exec();
     }

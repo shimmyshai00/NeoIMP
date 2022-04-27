@@ -10,6 +10,8 @@ target_sources(NeoIMP PUBLIC ${SRCS})
 
 set(SRCS
     IUiEntryPoint.hpp
+    getComponent.cpp
+    getComponent.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})

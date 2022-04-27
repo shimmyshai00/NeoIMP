@@ -8,6 +8,8 @@
 // FILE:    MainWindowProducer.hpp
 // PURPOSE: Defines the MainWindowProducer class.
 
+#include <fruit/fruit.h>
+
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
@@ -15,7 +17,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
     // PURPOSE: Produces the main window view.
     class MainWindowProducer : public Common::Mvc::IViewProducer<> {
        public:
-        MainWindowProducer();
+        INJECT(MainWindowProducer());
 
         void requestView();
     };

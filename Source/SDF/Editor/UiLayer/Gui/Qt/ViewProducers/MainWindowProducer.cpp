@@ -18,5 +18,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
     void MainWindowProducer::requestView()
     {
         auto *mainWindow = new View::MainWindow();
+        mainWindow->show();
     }
 } // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers

@@ -3,6 +3,8 @@
 set(SRCS
     EntryPoint.cpp
     EntryPoint.hpp
+    getComponent.cpp
+    getComponent.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})
