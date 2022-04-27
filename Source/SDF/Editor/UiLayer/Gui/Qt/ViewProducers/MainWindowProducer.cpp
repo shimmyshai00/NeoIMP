@@ -9,15 +9,11 @@
 
 #include "../View/MainWindow.hpp"
 
-namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
-{
-    MainWindowProducer::MainWindowProducer()
-    {
-    }
+namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
+    MainWindowProducer::MainWindowProducer() {}
 
-    void MainWindowProducer::requestView()
-    {
+    void MainWindowProducer::requestView() {
         auto *mainWindow = new View::MainWindow();
         mainWindow->show();
     }
-} // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
