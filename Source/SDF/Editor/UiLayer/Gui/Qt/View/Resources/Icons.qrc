@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Icons/cage.png</file>
+    <file>Icons/selection.png</file>
+    <file>Icons/magnifier.png</file>
+
+    <file>Icons/magnifier_plus.png</file>
+    <file>Icons/magnifier_minus.png</file>
+    <file>Icons/magnifier_equals.png</file>
+  </qresource>
+</RCC>

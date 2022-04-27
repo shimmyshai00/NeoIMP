@@ -26,11 +26,14 @@ namespace SDF::Common::Mvc {
     };
 
     template <class ReturnIface, class... Args>
-    class IInteractiveViewProducer {
+    class AInteractiveViewProducer : public IViewProducer<ReturnIface, Args...> {
        public:
-        virtual ~IInteractiveViewProducer() = default;
+        virtual ~AInteractiveViewProducer() = default;
 
-        virtual ReturnIface *requestView(Args... as_args) = 0;
+        virtual ReturnIface *requestInteractiveView(Args... as_args) = 0;
+
+        // just discard the interface, so we can adapt one to the other
+        void requestView(Args... as_args) { requestInteractiveView(as_args...); }
     };
 }  // namespace SDF::Common::Mvc
 
