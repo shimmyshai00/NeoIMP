@@ -16,7 +16,6 @@
 #include <QString>
 
 #include "../MvcAdapter/QtView.hpp"
-#include "MenuItemDef.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   MainWindow
