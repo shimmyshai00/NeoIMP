@@ -9,12 +9,20 @@
 // PURPOSE: Enumerates the available color formats.
 
 namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color {
-    enum ColorFormat { COLOR_FMT_RGB24_888, COLOR_FMT_RGBA32_8888, COLOR_FMT_MAX };
+    enum ColorFormat { 
+        COLOR_FMT_RGB24_888, 
+        COLOR_FMT_RGBA32_8888, 
+        COLOR_FMT_MAX 
+    };
 }  // namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color
 
 namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color {
     // Provides some extra information about the above.
-    enum ColorModel { COLOR_MODEL_RGB, COLOR_MODEL_RGBA, COLOR_MODEL_MAX };
+    enum ColorModel { 
+        COLOR_MODEL_RGB, 
+        COLOR_MODEL_RGBA, 
+        COLOR_MODEL_MAX 
+    };
 
     // must match with ColorFormat above
     static const ColorModel g_colorModelsForFormats[COLOR_FMT_MAX] = {
