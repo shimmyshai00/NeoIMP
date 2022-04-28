@@ -9,10 +9,14 @@
 // PURPOSE: Defines the MainWindow class.
 
 #include <QGridLayout>
+#include <QKeySequence>
+#include <QList>
 #include <QMainWindow>
 #include <QMenu>
+#include <QString>
 
 #include "../MvcAdapter/QtView.hpp"
+#include "MenuItemDef.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   MainWindow
@@ -23,19 +27,26 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         MainWindow();
 
        private:
+        void addMenuItem(QMenu *a_menu,
+                         QString a_caption,
+                         QString a_statusTip,
+                         const QList<QKeySequence> &a_shortcuts,
+                         void (MainWindow::*a_signalFunc)());
+
         void createMenus();
-        void createMenuActions();
 
         QGridLayout *m_centralLayout;
 
         QMenu *m_fileMenu;
         QMenu *m_editMenu;
-        QMenu *m_viewMenu;
         QMenu *m_imageMenu;
         QMenu *m_layerMenu;
         QMenu *m_selectMenu;
         QMenu *m_filterMenu;
+        QMenu *m_viewMenu;
+        QMenu *m_windowMenu;
         QMenu *m_helpMenu;
+
        signals:
         // File
         void onExit();
