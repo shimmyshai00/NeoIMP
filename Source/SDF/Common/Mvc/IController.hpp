@@ -8,12 +8,14 @@
 // FILE:    IController.hpp
 // PURPOSE: Defines the IController interface.
 
+#include "../IConnectable.hpp"
+
 namespace SDF::Common::Mvc {
     // CLASS:   IController
     // PURPOSE: Defines the interface for MVC controllers. An MVC controller is an event handler to be hooked to a UI
     //          element, or View.
     template <class... Args>
-    class IController {
+    class IController : public IConnectable {
        public:
         virtual ~IController() = default;
 

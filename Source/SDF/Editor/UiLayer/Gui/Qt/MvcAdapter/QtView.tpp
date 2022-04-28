@@ -32,46 +32,47 @@ namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
             return extract_from(a_tup, boost::mp11::mp_iota_c<N>());
         }
 
-        template <class Tuple>
-        struct TranslateTuple {};
+        template <class Tuple, class Arg>
+        auto operator+(const Tuple &a_tup, const Arg &a_arg) {
+            return std::tuple_cat(a_tup, std::make_tuple(Translate<Arg>()(a_arg)));
+        }
 
-        template <class... Args>
-        struct TranslateTuple<std::tuple<Args...>> {
-            std::tuple<Translate<Args>...> operator()(std::tuple<Args...> a_tup) {
-                return std::apply([](auto... bs_vals) { (..., Translate(bs_vals)); }, a_tup);
-            }
-        };
+        template <class Tuple, class Arg>
+        using AppendTranslate = boost::mp11::mp_push_back<Tuple, Translate<Arg>>;
 
         template <class QWidgetT, class FuncPtr>
         struct Connect {};
 
         template <class QWidgetT, class R, class... Args>
-        struct Connect<QWidgetT, R (*)(Args...)> {
+        struct Connect<QWidgetT, R (QWidgetT::*)(Args...)> {
             template <class... ControllerArgs>
             struct To {
-                QMetaObject::Connection like(QWidgetT *a_qWidget,
-                                             R (*a_signal)(Args...),
-                                             Common::Mvc::IController<ControllerArgs...> *a_controller) {
-                    return QWidgetT::connect(a_qWidget, a_signal, [&](Args... bs_args) {
+                static QMetaObject::Connection like(QWidgetT *a_qWidget,
+                                                    R (QWidgetT::*a_signal)(Args...),
+                                                    Common::Mvc::IController<ControllerArgs...> *a_controller) {
+                    return QWidgetT::connect(a_qWidget, a_signal, [=](Args... bs_args) {
                         constexpr std::size_t N = boost::mp11::mp_size<boost::mp11::mp_list<ControllerArgs...>>::value;
 
                         auto passedTup = Impl::args_to_tuple(bs_args...);
-                        auto shrunkTup = Impl::extract_first_n_from<decltype(passedTup)::type, N>(passedTup);
-                        auto translatedTup = TranslateTuple<decltype(shrunkTup)>(shrunkTup);
+                        auto shrunkTup = Impl::extract_first_n_from<decltype(passedTup), N>(passedTup);
+                        // auto translatedTup = TranslateTuple<decltype(shrunkTup)>()(shrunkTup);
+                        auto translatedTup =
+                            std::apply([](auto... cs_args) { return (std::tuple<>() + ... + cs_args); }, shrunkTup);
+                        auto callTup = std::tuple_cat(std::make_tuple(a_controller), translatedTup);
 
-                        return std::apply(*a_signal, translatedTup);
+                        return std::apply(&Common::Mvc::IController<ControllerArgs...>::onTriggered, callTup);
                     });
                 }
             };
         };
     }  // namespace Impl
 
-    template <class QWidgetT>
-    QtView<QWidgetT>::QtView(QWidget *a_parent) : QWidgetT(a_parent) {}
+    template <class QWidgetT, class T>
+    QtView<QWidgetT, T>::QtView(QWidget *a_parent) : QWidgetT(a_parent) {}
 
-    template <class QWidgetT>
+    template <class QWidgetT, class T>
     template <class FuncPtr, class... ControllerArgs>
-    Common::Connection QtView<QWidgetT>::attachController(
+    Common::Connection QtView<QWidgetT, T>::attachController(
         FuncPtr a_signal, std::unique_ptr<Common::Mvc::IController<ControllerArgs...>> a_controller) {
         // get the pointer before we anonymize it away
         Common::Mvc::IController<ControllerArgs...> *controllerPtr = a_controller.get();
@@ -79,7 +80,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
 
         // use our template magic to rip and translate the parameters on a_signal.
         auto qtConn =
-            Impl::Connect<QWidgetT, FuncPtr>::template To<ControllerArgs...>::like(this, a_signal, controllerPtr);
+            Impl::Connect<T, FuncPtr>::template To<ControllerArgs...>::like((T *)this, a_signal, controllerPtr);
         m_qtConns.push_back(qtConn);
 
         return Common::Connection(this, controllerPtr);
@@ -88,8 +89,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
 
 namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
     // Private member.
-    template <class QWidgetT>
-    void QtView<QWidgetT>::disconnectConnectable(Common::IConnectable *pa_connectable) {
+    template <class QWidgetT, class T>
+    void QtView<QWidgetT, T>::disconnectConnectable(Common::IConnectable *pa_connectable) {
         auto connIt = m_qtConns.begin();
         for (auto it = m_ownedControllers.begin(); it != m_ownedControllers.end(); ++it, ++connIt) {
             if (it->get() == pa_connectable) {

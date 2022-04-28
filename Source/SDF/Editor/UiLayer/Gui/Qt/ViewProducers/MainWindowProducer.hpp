@@ -10,16 +10,25 @@
 
 #include <fruit/fruit.h>
 
+#include <QPointer>
+
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
+#include "../../Controller/IUiTerminator.hpp"
+#include "../View/MainWindow.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
     // CLASS:   MainWindowProducer
     // PURPOSE: Produces the main window view.
-    class MainWindowProducer : public Common::Mvc::IViewProducer<> {
+    class MainWindowProducer : public Common::Mvc::IViewProducer<>, private Controller::IUiTerminator {
        public:
         INJECT(MainWindowProducer());
 
         void requestView();
+
+       private:
+        QPointer<View::MainWindow> m_mainWindow;
+
+        void terminateUi();
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
 

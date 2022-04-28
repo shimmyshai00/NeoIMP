@@ -19,8 +19,9 @@
 
 namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
     // CLASS:   QtView
-    // PURPOSE: Defines an adapter for Qt QWidgets into the widget system-agnostic MVC system.
-    template <class QWidgetT>
+    // PURPOSE: Defines an adapter for Qt QWidgets into the widget system-agnostic MVC system. Note that T should CRTP-
+    //          inherit this class.
+    template <class QWidgetT, class T>
     class QtView : public QWidgetT, private Common::IDisconnector {
        public:
         QtView(QWidget *a_parent = nullptr);

@@ -21,7 +21,7 @@
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   MainWindow
     // PURPOSE: Defines the Qt main window.
-    class MainWindow : public MvcAdapter::QtView<QMainWindow> {
+    class MainWindow : public MvcAdapter::QtView<QMainWindow, MainWindow> {
         Q_OBJECT
        public:
         MainWindow();
