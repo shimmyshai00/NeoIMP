@@ -19,6 +19,7 @@ namespace SDF::Editor::UiLayer::Gui::Controller::MainWindow {
         OnExit(IUiTerminator *a_uiTerminator);
 
         void onTriggered();
+
        private:
         IUiTerminator *m_uiTerminator;
     };

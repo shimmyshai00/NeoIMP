@@ -7,9 +7,9 @@
 
 #include "Application.hpp"
 
-#include "../UiLayer/getComponent.hpp"
-
 #include <QApplication>
+
+#include "../UiLayer/getComponent.hpp"
 
 namespace SDF::Editor::Qt {
     Application *Application::psm_instance = nullptr;
