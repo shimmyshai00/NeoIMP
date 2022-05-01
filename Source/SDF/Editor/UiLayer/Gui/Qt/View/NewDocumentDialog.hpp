@@ -13,9 +13,10 @@
 #include <QWidget>
 
 #include "../../../../../Common/Mvc/ServicePack.hpp"
+#include "../../../AbstractModel/Services/IConversionContextManipulator.hpp"
+#include "../../../AbstractModel/Services/IConvertLength.hpp"
+#include "../../../AbstractModel/Services/IConvertResolution.hpp"
 #include "../MvcAdapter/QtView.hpp"
-
-#include "CustomWidgets/MeasurementEdit.hpp"
 
 namespace Ui {
     class NewDocumentDialog;
@@ -27,7 +28,11 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
     class NewDocumentDialog : public MvcAdapter::QtView<QDialog, NewDocumentDialog> {
         Q_OBJECT
        public:
-        typedef Common::Mvc::UnionPack<CustomWidgets::MeasurementEdit::deps_t> deps_t;
+        typedef Common::Mvc::ServicePack<AbstractModel::Services::IUnitConversionContextManipulator,
+                                         AbstractModel::Services::IConvertLength,
+                                         AbstractModel::Services::IConvertResolution>
+            deps_t;
+
        public:
         NewDocumentDialog(deps_t a_deps, QWidget *a_parent = nullptr);
         ~NewDocumentDialog();
@@ -35,10 +40,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
        private:
         deps_t m_services;
         Ui::NewDocumentDialog *m_ui;
-
-        CustomWidgets::MeasurementEdit *m_widthEdit;
-        CustomWidgets::MeasurementEdit *m_heightEdit;
-        CustomWidgets::MeasurementEdit *m_resolutionEdit;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View
 

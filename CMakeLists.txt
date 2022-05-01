@@ -13,3 +13,4 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_subdirectory(Source)
+add_subdirectory(QtPlugin)

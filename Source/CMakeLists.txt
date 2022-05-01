@@ -9,6 +9,8 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 COMPONENTS Core Widgets UiTools)
 
+include_directories(.)
+
 set(SRCS Main.cpp)
 
 add_executable(NeoIMP ${SRCS})
