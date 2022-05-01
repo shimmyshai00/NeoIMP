@@ -11,17 +11,19 @@
 #include "../../../../../Common/Mvc/IController.hpp"
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
 
+#include <memory>
+
 namespace SDF::Editor::UiLayer::Gui::Controller::MainWindow {
     // CLASS:   OnNew
     // PURPOSE: Handles the "New" menu command.
     class OnNew : public Common::Mvc::IController<> {
        public:
-        OnNew(Common::Mvc::IViewProducer<> *a_newDocumentDialogProducer);
+        OnNew(std::unique_ptr<Common::Mvc::IViewProducer<>> a_newDocumentDialogProducer);
 
         void onTriggered();
 
        private:
-        Common::Mvc::IViewProducer<> *m_newDocumentDialogProducer;
+        std::unique_ptr<Common::Mvc::IViewProducer<>> m_newDocumentDialogProducer;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Controller::MainWindow
 

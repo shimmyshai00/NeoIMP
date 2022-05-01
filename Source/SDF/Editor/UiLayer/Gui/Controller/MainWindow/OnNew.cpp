@@ -8,8 +8,8 @@
 #include "OnNew.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Controller::MainWindow {
-    OnNew::OnNew(Common::Mvc::IViewProducer<> *a_newDocumentDialogProducer)
-        : m_newDocumentDialogProducer(a_newDocumentDialogProducer) {}
+    OnNew::OnNew(std::unique_ptr<Common::Mvc::IViewProducer<>> a_newDocumentDialogProducer)
+        : m_newDocumentDialogProducer(std::move(a_newDocumentDialogProducer)) {}
 
     void OnNew::onTriggered() { m_newDocumentDialogProducer->requestView(); }
 }  // namespace SDF::Editor::UiLayer::Gui::Controller::MainWindow

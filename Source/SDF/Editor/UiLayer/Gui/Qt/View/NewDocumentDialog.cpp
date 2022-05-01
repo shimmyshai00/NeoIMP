@@ -1,5 +1,5 @@
 // (C) 2020-2022. All rights reserved. See LICENSE for legal and redistribution terms.
-// 
+//
 // AUTHOR:  Shimrra Shai
 // PROJECT: NeoIMP
 // FILE:    NewDocumentDialog.cpp
@@ -9,16 +9,13 @@
 
 #include <QtUiTools>
 
+#include "Resources/Forms/ui_NewDocumentDialog.h"
+
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     NewDocumentDialog::NewDocumentDialog(QWidget *a_parent)
-        : QtView<QDialog, NewDocumentDialog>(a_parent)
-    {
-        // Load the form from the resources.
-        QUiLoader uiLoader;
-        QFile resFile(":/Forms/newdocumentdialog.ui");
-
-        resFile.open(QFile::ReadOnly);
-        m_form = uiLoader.load(&resFile, this);
-        resFile.close();
+        : QtView<QDialog, NewDocumentDialog>(a_parent), m_ui(new Ui::NewDocumentDialog) {
+        m_ui->setupUi(this);
     }
+
+    NewDocumentDialog::~NewDocumentDialog() { delete m_ui; }
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View

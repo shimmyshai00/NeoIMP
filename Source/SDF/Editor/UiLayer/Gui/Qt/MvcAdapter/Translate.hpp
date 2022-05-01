@@ -51,8 +51,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter {
     struct Translate<QString> {
         typedef std::string trans_t;
 
-        // note: *must* return UTF-8 formatted strings; this is what the MVC controller layer is implied to accept as
-        // neutral format
+        // note: *must* return UTF-8 formatted strings; this is what the MVC controller layer (and thus ultimately, the
+        // model) is implied to accept as neutral format
         trans_t operator()(const QString &rhs) { return rhs.toStdString(); }
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::MvcAdapter

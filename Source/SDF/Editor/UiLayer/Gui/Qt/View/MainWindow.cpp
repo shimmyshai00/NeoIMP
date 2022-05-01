@@ -53,9 +53,9 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         QMenu *m_helpMenu;
 
         m_fileMenu = menuBar()->addMenu(tr("&File"));
-        addMenuItem(m_fileMenu, tr("&New"), tr("Create a new image document"), { QKeySequence::New }, nullptr);
+        addMenuItem(m_fileMenu, tr("&New"), tr("Create a new image document"), {QKeySequence::New}, &MainWindow::onNew);
         m_fileMenu->addSeparator();
-        addMenuItem(m_fileMenu, tr("E&xit"), tr("Exit the program"), { tr("Ctrl+Q") }, &MainWindow::onExit);
+        addMenuItem(m_fileMenu, tr("E&xit"), tr("Exit the program"), {tr("Ctrl+Q")}, &MainWindow::onExit);
 
         m_editMenu = menuBar()->addMenu(tr("&Edit"));
         m_imageMenu = menuBar()->addMenu(tr("&Image"));

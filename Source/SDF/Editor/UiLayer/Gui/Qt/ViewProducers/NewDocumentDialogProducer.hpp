@@ -8,7 +8,7 @@
 // FILE:    NewDocumentDialogProducer.hpp
 // PURPOSE: Defines the NewDocumentDialogProducer class.
 
-#include <QPointer>
+#include <QWidget>
 
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
 #include "../../Controller/IUiTerminator.hpp"
@@ -19,9 +19,11 @@ namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
     // PURPOSE: Produces the new-document dialog view.
     class NewDocumentDialogProducer : public Common::Mvc::IViewProducer<> {
        public:
-        NewDocumentDialogProducer();
+        NewDocumentDialogProducer(QWidget *a_parent);
 
         void requestView();
+       private:
+        QWidget *m_parent;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers
 

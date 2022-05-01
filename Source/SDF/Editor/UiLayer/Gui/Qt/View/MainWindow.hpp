@@ -48,6 +48,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
 
        signals:
         // File
+        void onNew();
         void onExit();
 
         // Edit

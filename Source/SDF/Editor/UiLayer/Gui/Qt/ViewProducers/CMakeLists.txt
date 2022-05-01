@@ -3,6 +3,8 @@
 set(SRCS
     MainWindowProducer.cpp
     MainWindowProducer.hpp
+    NewDocumentDialogProducer.cpp
+    NewDocumentDialogProducer.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})

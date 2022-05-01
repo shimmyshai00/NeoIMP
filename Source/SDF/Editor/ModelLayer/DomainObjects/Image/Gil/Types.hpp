@@ -32,6 +32,9 @@ namespace SDF::Editor::ModelLayer::DomainObjects::Image::Gil {
 
     template<class ImplementationTagT>
     using NeoRectFg = Math::Rect<typename ImplTraits<ImplementationTagT>::fg_coord_t>;
+
+    // custom type operators for quick conversion
+    
 }  // namespace SDF::Editor::ModelLayer::DomainObjects::Image::Gil
 
 #endif // SDF_EDITOR_MODELLAYER_DOMAINOBJECTS_IMAGE_GIL_TYPES_HPP

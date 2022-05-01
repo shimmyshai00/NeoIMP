@@ -1,5 +1,5 @@
 <RCC>
   <qresource prefix="forms">
-    <file>Forms/NewDocumentDialog.ui</file>
+    <file alias="newdocumentdialog.ui">Forms/NewDocumentDialog.ui</file>
   </qresource>
 </RCC>

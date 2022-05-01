@@ -14,6 +14,10 @@
 
 #include "../MvcAdapter/QtView.hpp"
 
+namespace Ui {
+    class NewDocumentDialog;
+}
+
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   NewDocumentDialog
     // PURPOSE: Defines a dialog for getting the information required to create a new image document from the user.
@@ -21,9 +25,10 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         Q_OBJECT
        public:
         NewDocumentDialog(QWidget *a_parent = nullptr);
+        ~NewDocumentDialog();
 
        private:
-        QPointer<QWidget> m_form;
+        Ui::NewDocumentDialog *m_ui;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View
 
