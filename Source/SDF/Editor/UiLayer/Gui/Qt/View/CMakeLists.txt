@@ -3,8 +3,11 @@
 set(SRCS
     MainWindow.cpp
     MainWindow.hpp
+    NewDocumentDialog.cpp
+    NewDocumentDialog.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})
 
 add_subdirectory(CustomWidgets)
+add_subdirectory(Resources)
