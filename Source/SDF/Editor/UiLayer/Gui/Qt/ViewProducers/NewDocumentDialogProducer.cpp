@@ -10,10 +10,11 @@
 #include "../View/NewDocumentDialog.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
-    NewDocumentDialogProducer::NewDocumentDialogProducer(QWidget *a_parent) : m_parent(a_parent) {}
+    NewDocumentDialogProducer::NewDocumentDialogProducer(deps_t a_deps, QWidget *a_parent)
+        : m_services(a_deps), m_parent(a_parent) {}
 
     void NewDocumentDialogProducer::requestView() {
-        View::NewDocumentDialog *ndd = new View::NewDocumentDialog(m_parent);
+        View::NewDocumentDialog *ndd = new View::NewDocumentDialog(m_services, m_parent);
         ndd->setAttribute(::Qt::WA_DeleteOnClose);
         ndd->show();
     }

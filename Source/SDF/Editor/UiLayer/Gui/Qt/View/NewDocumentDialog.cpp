@@ -12,9 +12,14 @@
 #include "Resources/Forms/ui_NewDocumentDialog.h"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
-    NewDocumentDialog::NewDocumentDialog(QWidget *a_parent)
-        : QtView<QDialog, NewDocumentDialog>(a_parent), m_ui(new Ui::NewDocumentDialog) {
+    NewDocumentDialog::NewDocumentDialog(deps_t a_deps, QWidget *a_parent)
+        : QtView<QDialog, NewDocumentDialog>(a_parent), m_services(a_deps), m_ui(new Ui::NewDocumentDialog) {
         m_ui->setupUi(this);
+
+        // Manually insert the measurement editors separately.
+        m_widthEdit = new CustomWidgets::MeasurementEdit(m_services, m_ui->widthEdit_placeholder);
+        m_heightEdit = new CustomWidgets::MeasurementEdit(m_services, m_ui->heightEdit_placeholder);
+        m_resolutionEdit = new CustomWidgets::MeasurementEdit(m_services, m_ui->resolutionEdit_placeholder);;
     }
 
     NewDocumentDialog::~NewDocumentDialog() { delete m_ui; }

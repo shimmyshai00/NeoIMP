@@ -7,10 +7,13 @@
 
 #include "getComponent.hpp"
 
+#include "../../../ModelLayer/getComponent.hpp"
 #include "ViewProducers/MainWindowProducer.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt {
     Component getComponent() {
-        return fruit::createComponent().bind<Common::Mvc::IViewProducer<>, ViewProducers::MainWindowProducer>();
+        return fruit::createComponent()
+            .install(ModelLayer::getComponent)
+            .bind<Common::Mvc::IViewProducer<>, ViewProducers::MainWindowProducer>();
     }
 }  // namespace SDF::Editor::UiLayer::Gui::Qt

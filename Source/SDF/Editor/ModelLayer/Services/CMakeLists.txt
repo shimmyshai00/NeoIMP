@@ -3,6 +3,8 @@
 set(SRCS
     CreateImage.cpp
     CreateImage.hpp
+    UnitConversion.cpp
+    UnitConversion.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})

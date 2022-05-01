@@ -10,5 +10,7 @@
 #include "Gui/getComponent.hpp"
 
 namespace SDF::Editor::UiLayer {
-    Component getComponent() { return fruit::createComponent().install(Gui::getComponent); }
+    Component getComponent() {
+        return fruit::createComponent().install(Gui::getComponent);
+    }
 }  // namespace SDF::Editor::UiLayer

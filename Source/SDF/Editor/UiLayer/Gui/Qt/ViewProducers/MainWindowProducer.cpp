@@ -13,7 +13,7 @@
 #include "NewDocumentDialogProducer.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
-    MainWindowProducer::MainWindowProducer() {}
+    MainWindowProducer::MainWindowProducer(deps_t a_deps) : m_services(a_deps) {}
 
     void MainWindowProducer::requestView() {
         using namespace Common;
@@ -23,7 +23,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
         m_mainWindow->show();
 
         auto onNew = std::unique_ptr<Mvc::IController<>>(new Controller::MainWindow::OnNew(
-            std::unique_ptr<Mvc::IViewProducer<>>(new NewDocumentDialogProducer(m_mainWindow))));
+            std::unique_ptr<Mvc::IViewProducer<>>(new NewDocumentDialogProducer(m_services, m_mainWindow))));
         m_mainWindow->attachController(&View::MainWindow::onNew, std::move(onNew));
 
         auto onExit = std::unique_ptr<Mvc::IController<>>(new Controller::MainWindow::OnExit(this));

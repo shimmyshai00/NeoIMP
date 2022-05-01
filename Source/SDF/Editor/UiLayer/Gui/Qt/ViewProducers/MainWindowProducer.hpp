@@ -13,19 +13,26 @@
 #include <QPointer>
 
 #include "../../../../../Common/Mvc/IViewProducer.hpp"
+#include "../../../../../Common/Mvc/ServicePack.hpp"
 #include "../../Controller/IUiTerminator.hpp"
 #include "../View/MainWindow.hpp"
+
+#include "NewDocumentDialogProducer.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::ViewProducers {
     // CLASS:   MainWindowProducer
     // PURPOSE: Produces the main window view.
     class MainWindowProducer : public Common::Mvc::IViewProducer<>, private Controller::IUiTerminator {
        public:
-        INJECT(MainWindowProducer());
+        typedef Common::Mvc::UnionPack<NewDocumentDialogProducer::deps_t> deps_t;
+       public:
+        INJECT(MainWindowProducer(deps_t a_deps));
 
         void requestView();
 
        private:
+        deps_t m_services;
+        
         QPointer<View::MainWindow> m_mainWindow;
 
         void terminateUi();
