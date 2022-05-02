@@ -3,3 +3,4 @@
 add_subdirectory(Qt)
 add_subdirectory(UiLayer)
 add_subdirectory(ModelLayer)
+add_subdirectory(DataLayer)

@@ -7,6 +7,7 @@
 
 #include "getComponent.hpp"
 
+#include "../DataLayer/getComponent.hpp"
 #include "Services/CreateImage.hpp"
 #include "Services/UnitConversion.hpp"
 
@@ -16,6 +17,7 @@ namespace SDF::Editor::ModelLayer {
             .bind<UiLayer::AbstractModel::Services::IUnitConversionContextManipulator, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertLength, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertResolution, Services::UnitConversion>()
-            .bind<UiLayer::AbstractModel::Services::ICreateImage, Services::CreateImage>();
+            .bind<UiLayer::AbstractModel::Services::ICreateImage, Services::CreateImage>()
+            .install(DataLayer::getComponent);
     }
 }  // namespace SDF::Editor::ModelLayer

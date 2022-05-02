@@ -14,6 +14,7 @@
 #include "../../UiLayer/AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../../UiLayer/AbstractModel/Services/IConvertLength.hpp"
 #include "../../UiLayer/AbstractModel/Services/IConvertResolution.hpp"
+#include "../AbstractData/IConversionContextRepository.hpp"
 
 namespace SDF::Editor::ModelLayer::Services {
     // CLASS:   UnitConversion
@@ -22,7 +23,7 @@ namespace SDF::Editor::ModelLayer::Services {
                            public UiLayer::AbstractModel::Services::IConvertLength,
                            public UiLayer::AbstractModel::Services::IConvertResolution {
        public:
-        INJECT(UnitConversion());
+        INJECT(UnitConversion(AbstractData::IConversionContextRepository *a_conversionContextRepository));
 
         Common::Handle createUnitConversionContext(float a_resolutionPpi);
         void deleteUnitConversionContext(Common::Handle a_ctx);
@@ -36,6 +37,8 @@ namespace SDF::Editor::ModelLayer::Services {
         float convert(float a_quant,
                       UiLayer::AbstractModel::Defs::Metrics::ResolutionUnit a_from,
                       UiLayer::AbstractModel::Defs::Metrics::ResolutionUnit a_to);
+       private:
+        AbstractData::IConversionContextRepository *m_conversionContextRepository;
     };
 }  // namespace SDF::Editor::ModelLayer::Services
 

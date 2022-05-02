@@ -8,5 +8,6 @@ set(SRCS
 target_sources(NeoIMP PUBLIC ${SRCS})
 
 add_subdirectory(Math)
+add_subdirectory(Metrics)
 add_subdirectory(Image)
 add_subdirectory(Color)

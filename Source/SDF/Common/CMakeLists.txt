@@ -14,3 +14,5 @@ set(SRCS
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})
+
+add_subdirectory(Data)

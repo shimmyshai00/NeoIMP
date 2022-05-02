@@ -7,6 +7,4 @@ set(SRCS
 
 target_sources(NeoIMP PUBLIC ${SRCS})
 
-add_subdirectory(AbstractData)
-add_subdirectory(DomainObjects)
-add_subdirectory(Services)
+add_subdirectory(Repositories)
