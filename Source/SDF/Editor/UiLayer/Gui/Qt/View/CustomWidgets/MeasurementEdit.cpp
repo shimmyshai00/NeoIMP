@@ -165,6 +165,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
 
         // Hook signals.
         connect(m_quantityLineEdit, &QLineEdit::editingFinished, [=]() {
+            printf("entered text: %s\n", m_quantityLineEdit->text().toStdString().c_str());
             m_lastEnteredQuantity = m_quantityLineEdit->text().toFloat();
             m_lastEnteredQuantityUnit = m_displayUnit;
 
