@@ -63,6 +63,7 @@
         "any": "cpp",
         "future": "cpp",
         "cinttypes": "cpp",
-        "qwidget": "cpp"
+        "qwidget": "cpp",
+        "set": "cpp"
     }
 }
