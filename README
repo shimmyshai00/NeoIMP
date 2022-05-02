@@ -13,6 +13,8 @@ IDE (thinking about Eclipse versus MSVS Code), so that it is easier to make prog
 reset the version numbers as well and won't be so casual as to call this very STUBby program a
 "version 1.0". It's really a version 0.0.
 
+NOTE (UE+1651.4747 Ms): MSVS Code has been decided.
+
 What is NeoIMP?
 ---------------
 
@@ -42,6 +44,8 @@ The very first release that WILL be posted to this site - which we are aiming to
 the next three megaseconds (35 days, or better, by UE+1653.000 000 Ms), will be pre-alpha
 0.0.1. As with our original plan, we will mark this as a STUB for recruiting further contributors
 to the project.
+
+NOTE (UE+1651.4746 Ms) This has been pushed back to UE+1654.000 000 Ms (about May 31, 2022).
 
 This release aims to:
 
