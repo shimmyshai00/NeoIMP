@@ -45,6 +45,11 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         // NOTES:    None.
         float quantity() const;
 
+        // FUNCTION: quantityIn
+        // PURPOSE:  Gets the quantity entered in the given unit.
+        // NOTES:    None.
+        float quantityIn(int a_unit) const;
+        
         // FUNCTION: unit
         // PURPOSE:  Gets the enumerated index of unit of measurement (will match one of the enum structures in
         //           AbstractModel).

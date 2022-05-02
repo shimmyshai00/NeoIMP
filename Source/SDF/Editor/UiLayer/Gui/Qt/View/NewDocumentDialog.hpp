@@ -13,6 +13,7 @@
 #include <QWidget>
 
 #include "../../../../../Common/Mvc/ServicePack.hpp"
+#include "../../../../../Common/Handle.hpp"
 #include "../../../AbstractModel/Services/IGetImageLimits.hpp"
 #include "../../../AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../../../AbstractModel/Services/IConvertLength.hpp"
@@ -42,6 +43,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
        private:
         deps_t m_services;
         Ui::NewDocumentDialog *m_ui;
+
+        Common::Handle m_conversionContext;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View
 

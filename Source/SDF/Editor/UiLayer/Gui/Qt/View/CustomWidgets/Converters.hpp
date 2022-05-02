@@ -11,6 +11,7 @@
 #include "../../../../../../Common/Mvc/ServicePack.hpp"
 #include "../../../../../../Common/Handle.hpp"
 #include "../../../../AbstractModel/Services/IConvertLength.hpp"
+#include "../../../../AbstractModel/Services/IConvertResolution.hpp"
 
 #include "IConverter.hpp"
 
@@ -33,5 +34,24 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         deps_t m_services;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
+
+namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
+    // CLASS:   ResolutionConverter
+    // PURPOSE: Defines a converter for resolution units.
+    class ResolutionConverter : public IConverter {
+       public:
+        typedef Common::Mvc::ServicePack<AbstractModel::Services::IConvertResolution> deps_t;
+       public:
+        ResolutionConverter(deps_t a_deps);
+
+        QStringList getUnitNames() const;
+        QStringList getUnitSymbols() const;
+
+        float convert(float a_quantity, int a_fromUnit, int a_toUnit, Common::Handle a_conversionCtx);
+       private:
+        deps_t m_services;
+    };
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
+
 
 #endif // SDF_EDITOR_UILAYER_GUI_QT_VIEW_CUSTOMWIDGETS_CONVERTERS_HPP

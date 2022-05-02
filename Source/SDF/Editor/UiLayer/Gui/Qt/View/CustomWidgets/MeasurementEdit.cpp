@@ -98,6 +98,14 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
             }
         }
 
+        float getQuantityIn(int a_unit) const {
+            if (m_converter) {
+                return m_converter->convert(m_quantity, m_unit, a_unit, m_conversionContext);
+            } else {
+                return 0.0f;
+            }
+        }
+
         int getUnit() const {
             if (m_converter) {
                 return m_unit;
@@ -259,6 +267,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
     }
 
     float MeasurementEdit::quantity() const { return m_widgetModel->getQuantity(); }
+
+    float MeasurementEdit::quantityIn(int a_unit) const { return m_widgetModel->getQuantityIn(a_unit); }
 
     int MeasurementEdit::unit() const { return m_widgetModel->getUnit(); }
 
