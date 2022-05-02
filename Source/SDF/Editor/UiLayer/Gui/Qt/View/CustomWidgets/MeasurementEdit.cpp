@@ -16,18 +16,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
     // PURPOSE: Provides a helper to modulate a quantity to within a range.
     class QuantityModulator {
        public:
-       
-    };
-}
-
-namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
-    // CLASS:   MeasurementValidator
-    // PURPOSE: Provides a custom validator to clamp the range.
-    class MeasurementValidator : public QValidator {
-       public:
-        MeasurementValidator(float a_min, float a_max, int a_decimals, QObject *a_parent = nullptr)
-            : QValidator(a_parent),
-              m_min(a_min),
+        QuantityModulator(float a_min, float a_max)
+            : m_min(a_min),
               m_max(a_max),
               m_converter(nullptr),
               m_conversionCtx(Common::HANDLE_INVALID),
@@ -35,33 +25,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
               m_dimensionfulMin(0.0f),
               m_dimensionfulMinUnit(0),
               m_dimensionfulMax(1.0f),
-              m_dimensionfulMaxUnit(0),
-              m_decimals(a_decimals) {}
-
-        QValidator::State validate(QString &input, int &pos) const {
-            // Validate it even makes sense as a float to begin with.
-            bool ok(false);
-            float gotFloat = locale().toFloat(input, &ok);
-            if (!ok) {
-                return QValidator::State::Invalid;
-            } else {
-                // Passed primary validation. Now do range check.
-                if ((gotFloat < getActiveMin()) || (gotFloat > getActiveMax())) {
-                    return QValidator::State::Intermediate;
-                } else {
-                    return QValidator::State::Acceptable;
-                }
-            }
-        }
-
-        virtual void fixup(QString &input) const override {
-            bool ok(false);
-            float gotFloat = locale().toFloat(input, &ok);
-            if (ok) {
-                gotFloat = std::clamp(gotFloat, getActiveMin(), getActiveMax());
-                input = QString::number(gotFloat, 'f', m_decimals);
-            }
-        }
+              m_dimensionfulMaxUnit(0) {}
 
         float getMin() const { return m_min; }
         float getMax() const { return m_max; }
@@ -70,7 +34,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
 
         float getDimensionfulMin() const { return m_dimensionfulMin; }
         int getDimensionfulMinUnit() const { return m_dimensionfulMinUnit; }
-        float getDimensionlfulMax() const { return m_dimensionfulMax; }
+        float getDimensionfulMax() const { return m_dimensionfulMax; }
         int getDimensionfulMaxUnit() const { return m_dimensionfulMaxUnit; }
 
         void setMin(float a_min) { m_min = a_min; }
@@ -91,12 +55,11 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
             m_dimensionfulMaxUnit = a_unit;
         }
 
-        float rangify(float a_quantity) { return std::clamp(a_quantity, getActiveMin(), getActiveMax()); }
+        bool isInRange(float a_quantity) { return (getActiveMin() <= a_quantity) && (a_quantity <= getActiveMax()); }
 
-        QString createValidFrom(float a_quantity) { return QString::number(a_quantity, 'f', m_decimals); }
+        float clampToRange(float a_quantity) { return std::clamp(a_quantity, getActiveMin(), getActiveMax()); }
 
        private:
-        // Numeric min and max for safety.
         float m_min;
         float m_max;
 
@@ -111,8 +74,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
 
         float m_dimensionfulMax;
         int m_dimensionfulMaxUnit;
-
-        int m_decimals;
 
        private:
         float getActiveMin() const {
@@ -131,6 +92,51 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
             }
         }
     };
+
+    // FUNCTION: formatQuantity
+    // PURPOSE:  A helper method to format a quantity to the widget's standard format.
+    // NOTES:    None.
+    QString formatQuantity(float a_quantity, int a_decimals) { return QString::number(a_quantity, 'f', a_decimals); }
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl
+
+namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
+    // CLASS:   MeasurementValidator
+    // PURPOSE: Provides a custom validator to clamp the range.
+    class MeasurementValidator : public QValidator {
+       public:
+        MeasurementValidator(QuantityModulator *a_modulator, int a_decimals, QObject *a_parent = nullptr)
+            : QValidator(a_parent), m_modulator(a_modulator), m_decimals(a_decimals) {}
+
+        QValidator::State validate(QString &input, int &pos) const {
+            // Validate it even makes sense as a float to begin with.
+            bool ok(false);
+            float gotFloat = locale().toFloat(input, &ok);
+            if (!ok) {
+                return QValidator::State::Invalid;
+            } else {
+                // Passed primary validation. Now do range check.
+                if (!m_modulator->isInRange(gotFloat)) {
+                    return QValidator::State::Intermediate;
+                } else {
+                    return QValidator::State::Acceptable;
+                }
+            }
+        }
+
+        virtual void fixup(QString &input) const override {
+            bool ok(false);
+            float gotFloat = locale().toFloat(input, &ok);
+            if (ok) {
+                gotFloat = m_modulator->clampToRange(gotFloat);
+                input = formatQuantity(gotFloat, m_decimals);
+            }
+        }
+
+       private:
+        QuantityModulator *m_modulator;
+
+        int m_decimals;
+    };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
@@ -139,7 +145,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
           m_boxLayout(new QBoxLayout(QBoxLayout::LeftToRight, this)),
           m_quantityLineEdit(new QLineEdit("0.0")),
           m_unitSelectComboBox(new QComboBox(this)),
-          m_measurementValidator(new Impl::MeasurementValidator(0.0f, 1.0f, 2, this)),
+          m_quantityModulator(new Impl::QuantityModulator(0.0f, 1.0f)),
+          m_measurementValidator(new Impl::MeasurementValidator(m_quantityModulator.get(), 2, this)),
           m_conversionContext(Common::HANDLE_INVALID),
           m_lastEnteredQuantity(0.0f),
           m_lastEnteredQuantityUnit(0),
@@ -157,30 +164,35 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         m_unitSelectComboBox->setEnabled(false);
 
         // Hook signals.
-        /*
         connect(m_quantityLineEdit, &QLineEdit::editingFinished, [=]() {
-            m_widgetModel->enterQuantity(m_quantityLineEdit->text());
-            quantityChanged(m_widgetModel->getQuantity());
+            m_lastEnteredQuantity = m_quantityLineEdit->text().toFloat();
+            m_lastEnteredQuantityUnit = m_displayUnit;
+
+            quantityChanged(m_lastEnteredQuantity, m_lastEnteredQuantityUnit);
         });
 
         connect(m_unitSelectComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [&](int index) {
             printf("selecting unit index %d\n", index);
-            m_widgetModel->selectUnit(index);
-            m_quantityLineEdit->setText(m_widgetModel->getDisplayQuantity());
+            m_quantityModulator->setEntryUnit(index);
+            m_displayUnit = index;
+
+            float convertedQuantity = m_converter->convert(m_lastEnteredQuantity, m_lastEnteredQuantityUnit,
+                                                           m_displayUnit, m_conversionContext);
+            m_quantityLineEdit->setText(Impl::formatQuantity(convertedQuantity, 2));
+
             unitChanged(index);
         });
-        */
     }
 
     void MeasurementEdit::setConversionContext(Common::Handle a_conversionCtx) {
-        m_measurementValidator->setConversionCtx(a_conversionCtx);
+        m_quantityModulator->setConversionCtx(a_conversionCtx);
         m_conversionContext = a_conversionCtx;
     }
 
     void MeasurementEdit::setConverter(std::unique_ptr<IConverter> a_converter) {
         if (a_converter) {
             m_converter = std::move(a_converter);
-            m_measurementValidator->setConverter(m_converter.get());
+            m_quantityModulator->setConverter(m_converter.get());
 
             m_quantityLineEdit->setEnabled(true);
             m_unitSelectComboBox->setEnabled(true);
@@ -207,29 +219,30 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
 
     void MeasurementEdit::setQuantity(float a_quantity) {
         if (m_converter) {
-            m_lastEnteredQuantity = m_measurementValidator->rangify(a_quantity);
+            m_lastEnteredQuantity = m_quantityModulator->clampToRange(a_quantity);
             m_lastEnteredQuantityUnit = m_displayUnit;
 
-            m_quantityLineEdit->setText(m_measurementValidator->createValidFrom(a_quantity));
+            m_quantityLineEdit->setText(Impl::formatQuantity(a_quantity, 2));
+
+            quantityChanged(m_lastEnteredQuantity, m_lastEnteredQuantityUnit);
         }
     }
 
     void MeasurementEdit::setUnit(int a_unit) {
         if (m_converter) {
-            m_displayUnit = a_unit;
             m_unitSelectComboBox->setCurrentIndex(a_unit);
         }
     }
 
     void MeasurementEdit::setMin(float a_minQuantity, int a_unit) {
         if (m_converter) {
-            m_measurementValidator->setDimensionfulMin(a_minQuantity, a_unit);
+            m_quantityModulator->setDimensionfulMin(a_minQuantity, a_unit);
         }
     }
 
     void MeasurementEdit::setMax(float a_maxQuantity, int a_unit) {
         if (m_converter) {
-            m_measurementValidator->setDimensionfulMax(a_maxQuantity, a_unit);
+            m_quantityModulator->setDimensionfulMax(a_maxQuantity, a_unit);
         }
     }
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets

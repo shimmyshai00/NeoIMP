@@ -21,6 +21,7 @@
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
     namespace Impl {
+        class QuantityModulator;
         class MeasurementValidator;
     }
 
@@ -81,12 +82,14 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         // NOTES:    None.
         void setMax(float a_maxQuantity, int a_unit);
        signals:
-        void quantityChanged(float a_quantity);
+        void quantityChanged(float a_quantity, int a_unit);
         void unitChanged(int a_unit);
        private:
         QPointer<QBoxLayout> m_boxLayout;
         QPointer<QLineEdit> m_quantityLineEdit;
         QPointer<QComboBox> m_unitSelectComboBox;
+
+        std::shared_ptr<Impl::QuantityModulator> m_quantityModulator;
         QPointer<Impl::MeasurementValidator> m_measurementValidator;
 
         std::unique_ptr<IConverter> m_converter;
@@ -94,7 +97,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
 
         float m_lastEnteredQuantity;
         int m_lastEnteredQuantityUnit;
-        
+
         int m_displayUnit;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
