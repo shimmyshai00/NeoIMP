@@ -30,7 +30,13 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
 
         bool hasConverter() const { return m_converter.get() != nullptr; }
 
-        void setConverter(std::unique_ptr<IConverter> a_converter) { m_converter = std::move(a_converter); }
+        void setConverter(std::unique_ptr<IConverter> a_converter) {
+            m_converter = std::move(a_converter);
+            m_displayUnit = 0;
+            m_unit = 0;
+            m_minUnit = 0;
+            m_maxUnit = 0;
+        }
 
         void setConversionContext(Common::Handle a_conversionContext) { m_conversionContext = a_conversionContext; }
 
@@ -62,6 +68,9 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         void selectUnit(int unit) {
             if (m_converter) {
                 m_displayUnit = unit;
+
+                float convQuantity(m_converter->convert(m_quantity, m_unit, m_displayUnit, m_conversionContext));
+                m_displayQuantity = QString::number(convQuantity, 'f', 2);
             }
         }
 
@@ -115,6 +124,22 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
             }
         }
 
+        float getMinQuantityInUnit(int a_unit) {
+            if (m_converter) {
+                return m_converter->convert(m_minQuantity, m_minUnit, a_unit, m_conversionContext);
+            } else {
+                return 0.0f;
+            }
+        }
+
+        float getMaxQuantityInUnit(int a_unit) {
+            if (m_converter) {
+                return m_converter->convert(m_maxQuantity, m_maxUnit, a_unit, m_conversionContext);
+            } else {
+                return 0.0f;
+            }
+        }
+
         void setMinQuantity(float a_minQuantity, int a_unit) {
             if (m_converter) {
                 m_minQuantity = a_minQuantity;
@@ -155,6 +180,30 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
 
+namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl {
+    // CLASS:   MeasurementValidator
+    // PURPOSE: Provides a custom validator to clamp the range.
+    class MeasurementValidator : public QDoubleValidator {
+       public:
+        explicit MeasurementValidator(QObject *parent = nullptr) : QDoubleValidator(parent) {}
+
+        MeasurementValidator(int decimals, QObject *parent = nullptr) : QDoubleValidator(parent) {
+            setDecimals(decimals);
+        }
+
+        virtual void fixup(QString &input) const override {
+            bool ok(false);
+            double attemptConv(input.toDouble(&ok));
+            if (ok) {
+                // valid number
+                input = QString::number(attemptConv, 'f', decimals());
+            } else {
+                // not a valid number; can't do nothing, sorry :(
+            }
+        }
+    };
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::Impl
+
 namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
     MeasurementEdit::MeasurementEdit(QWidget *a_parent)
         : QWidget(a_parent),
@@ -170,7 +219,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         m_boxLayout->addWidget(m_unitSelectComboBox);
 
         m_doubleValidator->setNotation(QDoubleValidator::StandardNotation);
-        m_doubleValidator->setDecimals(2);
         m_quantityLineEdit->setValidator(m_doubleValidator);
 
         // Disable the widget until primed with a converter.
@@ -186,6 +234,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         connect(m_unitSelectComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [&](int index) {
             printf("selecting unit index %d\n", index);
             m_widgetModel->selectUnit(index);
+            m_quantityLineEdit->setText(m_widgetModel->getDisplayQuantity());
             unitChanged(index);
         });
     }
