@@ -20,6 +20,10 @@
 #include "IConverter.hpp"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
+    namespace Impl {
+        class MeasurementValidator;
+    }
+
     // CLASS:   MeasurementEdit
     // PURPOSE: Defines a custom widget for editing quantities representing measurements.
     class MeasurementEdit : public QWidget {
@@ -49,7 +53,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         // PURPOSE:  Gets the quantity entered in the given unit.
         // NOTES:    None.
         float quantityIn(int a_unit) const;
-        
+
         // FUNCTION: unit
         // PURPOSE:  Gets the enumerated index of unit of measurement (will match one of the enum structures in
         //           AbstractModel).
@@ -83,10 +87,15 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
         QPointer<QBoxLayout> m_boxLayout;
         QPointer<QLineEdit> m_quantityLineEdit;
         QPointer<QComboBox> m_unitSelectComboBox;
-        QPointer<QDoubleValidator> m_doubleValidator;
+        QPointer<Impl::MeasurementValidator> m_measurementValidator;
 
-        class WidgetModel;
-        std::shared_ptr<WidgetModel> m_widgetModel;
+        std::unique_ptr<IConverter> m_converter;
+        Common::Handle m_conversionContext;
+
+        float m_lastEnteredQuantity;
+        int m_lastEnteredQuantityUnit;
+        
+        int m_displayUnit;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
 
