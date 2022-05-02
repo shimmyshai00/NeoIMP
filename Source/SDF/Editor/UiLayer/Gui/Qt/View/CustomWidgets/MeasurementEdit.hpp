@@ -53,41 +53,35 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets {
 
         // FUNCTION: setQuantity
         // PURPOSE:  Sets the quantity.
-        // NOTES:    None.
+        // NOTES:    When set with this method, the quantity is set in the unit last given to setUnit(), or else the
+        //           one selected by the user in the widget's drop-down box.
         void setQuantity(float a_quantity);
 
         // FUNCTION: setUnit
         // PURPOSE:  Sets the unit of measurement.
         // NOTES:    None.
         void setUnit(int a_unit);
-       private slots:
-        void userEditedQuantity(const QString &a_editedQuantity);
-        void userChangedUnit(int a_newUnit);
+
+        // FUNCTION: setMin
+        // PURPOSE:  Sets the minimum of the acceptable range of inputs.
+        // NOTES:    None.
+        void setMin(float a_minQuantity, int a_unit);
+
+        // FUNCTION: setMax
+        // PURPOSE:  Sets the maximum of the acceptable range of inputs.
+        // NOTES:    None.
+        void setMax(float a_maxQuantity, int a_unit);
        signals:
         void quantityChanged(float a_quantity);
         void unitChanged(int a_unit);
-
        private:
         QPointer<QBoxLayout> m_boxLayout;
         QPointer<QLineEdit> m_quantityLineEdit;
         QPointer<QComboBox> m_unitSelectComboBox;
+        QPointer<QDoubleValidator> m_doubleValidator;
 
-        QPointer<QDoubleValidator> m_rangeValidator;
-
-        std::unique_ptr<IConverter> m_converter;
-        Common::Handle m_conversionCtx;
-
-        QString m_lastTextEntered;
-        int m_lastUnitIndex;
-
-        void repopulateComboBox();
-
-        // These do not signal
-        float internalGetQuantity();
-        void internalSetQuantity(float a_quantity);
-
-        int internalGetUnit();
-        void internalSetUnit(int a_unit);
+        class WidgetModel;
+        std::shared_ptr<WidgetModel> m_widgetModel;
     };
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets
 

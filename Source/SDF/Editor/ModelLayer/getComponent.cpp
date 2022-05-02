@@ -8,12 +8,14 @@
 #include "getComponent.hpp"
 
 #include "../DataLayer/getComponent.hpp"
+#include "Services/EngineInfo.hpp"
 #include "Services/CreateImage.hpp"
 #include "Services/UnitConversion.hpp"
 
 namespace SDF::Editor::ModelLayer {
     Component getComponent() {
         return fruit::createComponent()
+            .bind<UiLayer::AbstractModel::Services::IGetImageLimits, Services::EngineInfo>()
             .bind<UiLayer::AbstractModel::Services::IUnitConversionContextManipulator, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertLength, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertResolution, Services::UnitConversion>()

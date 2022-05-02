@@ -13,6 +13,7 @@
 #include <QWidget>
 
 #include "../../../../../Common/Mvc/ServicePack.hpp"
+#include "../../../AbstractModel/Services/IGetImageLimits.hpp"
 #include "../../../AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../../../AbstractModel/Services/IConvertLength.hpp"
 #include "../../../AbstractModel/Services/IConvertResolution.hpp"
@@ -28,7 +29,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
     class NewDocumentDialog : public MvcAdapter::QtView<QDialog, NewDocumentDialog> {
         Q_OBJECT
        public:
-        typedef Common::Mvc::ServicePack<AbstractModel::Services::IUnitConversionContextManipulator,
+        typedef Common::Mvc::ServicePack<AbstractModel::Services::IGetImageLimits,
+                                         AbstractModel::Services::IUnitConversionContextManipulator,
                                          AbstractModel::Services::IConvertLength,
                                          AbstractModel::Services::IConvertResolution>
             deps_t;

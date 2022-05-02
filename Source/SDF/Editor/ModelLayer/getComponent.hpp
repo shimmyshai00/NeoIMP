@@ -10,13 +10,15 @@
 
 #include <fruit/fruit.h>
 
+#include "../UiLayer/AbstractModel/Services/IGetImageLimits.hpp"
 #include "../UiLayer/AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../UiLayer/AbstractModel/Services/IConvertLength.hpp"
 #include "../UiLayer/AbstractModel/Services/IConvertResolution.hpp"
 #include "../UiLayer/AbstractModel/Services/ICreateImage.hpp"
 
 namespace SDF::Editor::ModelLayer {
-    typedef fruit::Component<UiLayer::AbstractModel::Services::IUnitConversionContextManipulator,
+    typedef fruit::Component<UiLayer::AbstractModel::Services::IGetImageLimits,
+                             UiLayer::AbstractModel::Services::IUnitConversionContextManipulator,
                              UiLayer::AbstractModel::Services::IConvertLength,
                              UiLayer::AbstractModel::Services::IConvertResolution,
                              UiLayer::AbstractModel::Services::ICreateImage>

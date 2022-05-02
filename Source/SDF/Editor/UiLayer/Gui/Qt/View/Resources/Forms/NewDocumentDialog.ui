@@ -125,13 +125,13 @@
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="sdf::editor::uilayer::gui::qt::view::customwidgets::measurementedit"/>
+      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="widthEdit"/>
      </item>
      <item row="1" column="1">
-      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="sdf::editor::uilayer::gui::qt::view::customwidgets::measurementedit_2"/>
+      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="heightEdit"/>
      </item>
      <item row="2" column="1">
-      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="sdf::editor::uilayer::gui::qt::view::customwidgets::measurementedit_3"/>
+      <widget class="SDF::Editor::UiLayer::Gui::Qt::View::CustomWidgets::MeasurementEdit" name="resolutionEdit"/>
      </item>
     </layout>
    </widget>
