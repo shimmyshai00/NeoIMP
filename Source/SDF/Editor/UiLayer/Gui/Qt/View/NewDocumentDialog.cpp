@@ -20,6 +20,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
     NewDocumentDialog::NewDocumentDialog(deps_t a_deps, QWidget *a_parent)
         : QtView<QDialog, NewDocumentDialog>(a_parent), m_services(a_deps), m_ui(new Ui::NewDocumentDialog) {
         using namespace UiLayer::AbstractModel::Defs::Metrics;
+        using namespace UiLayer::AbstractModel::Defs::Image;
         using namespace UiLayer::AbstractModel::Services;
 
         const float c_defaultResPpi = 72.0f;
@@ -57,11 +58,38 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         m_ui->resolutionEdit->setUnit(RESOLUTION_UNIT_PPI);
         m_ui->resolutionEdit->setQuantity(c_defaultResPpi);
 
+        // Add prefabs
+        std::size_t numPrefabs = m_services.get<IGetImagePrefab>()->getNumPrefabs();
+        for(std::size_t i(0); i < numPrefabs; ++i) {
+            QString prefabTitle = QString::fromStdString(m_services.get<IGetImagePrefab>()->getPrefabTitle(i));
+            m_ui->presetSelector->addItem(prefabTitle);
+        }
+
         // Hook signals
-        connect(m_ui->resolutionEdit, &CustomWidgets::MeasurementEdit::quantityChanged, [&](float a_newQuantity) {
+        connect(m_ui->resolutionEdit, &CustomWidgets::MeasurementEdit::quantityChanged, [&](float b_newQuantity) {
             float resPpi = m_ui->resolutionEdit->quantityIn(RESOLUTION_UNIT_PPI);
             m_services.get<IUnitConversionContextManipulator>()->setConversionResolution(m_conversionContext, resPpi);
         });
+
+        connect(m_ui->presetSelector, QOverload<int>::of(&QComboBox::currentIndexChanged), [&](int b_newIndex) {
+            Spec prefabSpec = m_services.get<IGetImagePrefab>()->getPrefabSpec(b_newIndex);
+
+            // Fill out the fields. Remember to set units first because the quantities take in the currently-set unit.
+            // Also, the resolution should be filled out before the lengths so that they will be property interpreted.
+            m_ui->resolutionEdit->setUnit(prefabSpec.resolutionUnit);
+            m_ui->resolutionEdit->setQuantity(prefabSpec.resolution);
+
+            m_ui->widthEdit->setUnit(prefabSpec.widthUnit);
+            m_ui->widthEdit->setQuantity(prefabSpec.width);
+
+            m_ui->heightEdit->setUnit(prefabSpec.heightUnit);
+            m_ui->heightEdit->setQuantity(prefabSpec.height);
+
+            //setColorFormatBoxes(prefabSpec.colorFormat);
+        });
+
+        // Select first prefab
+        m_ui->presetSelector->setCurrentIndex(0);
     }
 
     NewDocumentDialog::~NewDocumentDialog() { 

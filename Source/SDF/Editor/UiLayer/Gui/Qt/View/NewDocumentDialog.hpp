@@ -15,6 +15,7 @@
 #include "../../../../../Common/Mvc/ServicePack.hpp"
 #include "../../../../../Common/Handle.hpp"
 #include "../../../AbstractModel/Services/IGetImageLimits.hpp"
+#include "../../../AbstractModel/Services/IGetImagePrefab.hpp"
 #include "../../../AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../../../AbstractModel/Services/IConvertLength.hpp"
 #include "../../../AbstractModel/Services/IConvertResolution.hpp"
@@ -31,6 +32,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         Q_OBJECT
        public:
         typedef Common::Mvc::ServicePack<AbstractModel::Services::IGetImageLimits,
+                                         AbstractModel::Services::IGetImagePrefab,
                                          AbstractModel::Services::IUnitConversionContextManipulator,
                                          AbstractModel::Services::IConvertLength,
                                          AbstractModel::Services::IConvertResolution>
