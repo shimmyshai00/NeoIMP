@@ -9,6 +9,7 @@
 
 #include "../../Common/Data/getComponent.hpp"
 #include "Repositories/ConversionContext.hpp"
+#include "Repositories/ImagePrefab.hpp"
 
 namespace SDF::Editor::DataLayer {
     Component getComponent() {
@@ -16,6 +17,7 @@ namespace SDF::Editor::DataLayer {
         
         return fruit::createComponent()
             .bind<IConversionContextRepository, Repositories::ConversionContext>()
+            .bind<IImagePrefabRepository, Repositories::ImagePrefab>()
             .install(Common::Data::getComponent);
     }
 }  // namespace SDF::Editor::DataLayer

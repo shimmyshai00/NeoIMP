@@ -3,6 +3,8 @@
 set(SRCS
     ConversionContext.cpp
     ConversionContext.hpp
+    ImagePrefab.cpp
+    ImagePrefab.hpp
 )
 
 target_sources(NeoIMP PUBLIC ${SRCS})

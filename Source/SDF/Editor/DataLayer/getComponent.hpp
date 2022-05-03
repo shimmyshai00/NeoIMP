@@ -11,9 +11,12 @@
 #include <fruit/fruit.h>
 
 #include "../ModelLayer/AbstractData/IConversionContextRepository.hpp"
+#include "../ModelLayer/AbstractData/IImagePrefabRepository.hpp"
 
 namespace SDF::Editor::DataLayer {
-    typedef fruit::Component<ModelLayer::AbstractData::IConversionContextRepository> Component;
+    typedef fruit::Component<ModelLayer::AbstractData::IConversionContextRepository,
+                             ModelLayer::AbstractData::IImagePrefabRepository>
+        Component;
 
     Component getComponent();
 }  // namespace SDF::Editor::DataLayer

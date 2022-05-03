@@ -9,20 +9,31 @@
 // PURPOSE: Defines a data structure holding a specification for a new document.
 
 #include <cstddef>
+#include <memory>
 #include <string>
 
 #include "../Color/ColorFormat.hpp"
+#include "../Color/IColor.hpp"
+#include "../Metrics/LengthUnit.hpp"
+#include "../Metrics/ResolutionUnit.hpp"
+#include "BackgroundPreset.hpp"
 
 namespace SDF::Editor::UiLayer::AbstractModel::Defs::Image {
     struct Spec {
         std::string name;
 
-        std::size_t widthPx;
-        std::size_t heightPx;
+        float width;
+        Metrics::LengthUnit widthUnit;
 
-        float resolutionPpi;
+        float height;
+        Metrics::LengthUnit heightUnit;
+
+        float resolution;
+        Metrics::ResolutionUnit resolutionUnit;
 
         Color::ColorFormat colorFormat;
+        BackgroundPreset backgroundPreset;
+        std::shared_ptr<Color::IColor<Color::ColorFormat>> customBackgroundColor;
     };
 }  // namespace SDF::Editor::UiLayer::AbstractModel::Defs::Image
 
