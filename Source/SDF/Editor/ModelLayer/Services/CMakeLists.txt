@@ -3,6 +3,8 @@
 set(SRCS
     EngineInfo.cpp
     EngineInfo.hpp
+    ImagePrefabs.cpp
+    ImagePrefabs.hpp
     CreateImage.cpp
     CreateImage.hpp
     UnitConversion.cpp

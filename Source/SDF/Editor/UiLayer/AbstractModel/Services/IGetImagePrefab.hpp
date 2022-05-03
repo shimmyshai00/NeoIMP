@@ -18,7 +18,7 @@ namespace SDF::Editor::UiLayer::AbstractModel::Services {
     // PURPOSE: Defines a service interface to get prefabricated templates for creating images.
     class IGetImagePrefab {
        public:
-        virtual ~IGetImagePrefab();
+        virtual ~IGetImagePrefab() = default;
 
         // FUNCTION: getNumPrefabs
         // PURPOSE:  Gets the number of stored prefabs.

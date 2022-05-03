@@ -9,6 +9,7 @@
 
 #include "../DataLayer/getComponent.hpp"
 #include "Services/EngineInfo.hpp"
+#include "Services/ImagePrefabs.hpp"
 #include "Services/CreateImage.hpp"
 #include "Services/UnitConversion.hpp"
 
@@ -19,6 +20,7 @@ namespace SDF::Editor::ModelLayer {
             .bind<UiLayer::AbstractModel::Services::IUnitConversionContextManipulator, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertLength, Services::UnitConversion>()
             .bind<UiLayer::AbstractModel::Services::IConvertResolution, Services::UnitConversion>()
+            .bind<UiLayer::AbstractModel::Services::IGetImagePrefab, Services::ImagePrefabs>()
             .bind<UiLayer::AbstractModel::Services::ICreateImage, Services::CreateImage>()
             .install(DataLayer::getComponent);
     }

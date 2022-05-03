@@ -13,8 +13,8 @@
 #include <cstddef>
 #include <string>
 
-#include "../../../UiLayer/AbstractModel/Defs/Image/Spec.hpp"
-#include "../../../UiLayer/AbstractModel/Services/IGetImagePrefab.hpp"
+#include "../../UiLayer/AbstractModel/Defs/Image/Spec.hpp"
+#include "../../UiLayer/AbstractModel/Services/IGetImagePrefab.hpp"
 #include "../AbstractData/IImagePrefabRepository.hpp"
 
 namespace SDF::Editor::ModelLayer::Services {

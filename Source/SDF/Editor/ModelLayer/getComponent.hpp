@@ -14,6 +14,7 @@
 #include "../UiLayer/AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../UiLayer/AbstractModel/Services/IConvertLength.hpp"
 #include "../UiLayer/AbstractModel/Services/IConvertResolution.hpp"
+#include "../UiLayer/AbstractModel/Services/IGetImagePrefab.hpp"
 #include "../UiLayer/AbstractModel/Services/ICreateImage.hpp"
 
 namespace SDF::Editor::ModelLayer {
@@ -21,6 +22,7 @@ namespace SDF::Editor::ModelLayer {
                              UiLayer::AbstractModel::Services::IUnitConversionContextManipulator,
                              UiLayer::AbstractModel::Services::IConvertLength,
                              UiLayer::AbstractModel::Services::IConvertResolution,
+                             UiLayer::AbstractModel::Services::IGetImagePrefab,
                              UiLayer::AbstractModel::Services::ICreateImage>
         Component;
 
