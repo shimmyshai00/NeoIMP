@@ -1,0 +1,848 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "Source/NeoIMP"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"include_directories",
+			"add_subdirectory"
+		],
+		"files" : 
+		[
+			"Source/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -std=c++17 -O3 -g  "
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_UITOOLS_LIB"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "QT_WIDGETS_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 0,
+					"path" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source/NeoIMP_autogen/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/Source/."
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtCore"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtUiTools"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				7,
+				9,
+				13,
+				15,
+				17,
+				20,
+				22,
+				24,
+				26,
+				28,
+				30,
+				35,
+				37,
+				39,
+				41,
+				45,
+				47,
+				49,
+				52,
+				59,
+				61,
+				63,
+				75,
+				77,
+				79,
+				81,
+				83,
+				85,
+				87,
+				89,
+				90
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "NeoIMP_autogen::@43690dd2fb94c8e45e84"
+		}
+	],
+	"id" : "NeoIMP::@43690dd2fb94c8e45e84",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-std=c++17 -O3 -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-lfruit",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5UiTools.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "NeoIMP",
+	"nameOnDisk" : "NeoIMP",
+	"paths" : 
+	{
+		"build" : "Source",
+		"source" : "Source"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				7,
+				9,
+				13,
+				15,
+				17,
+				20,
+				22,
+				24,
+				26,
+				28,
+				30,
+				35,
+				37,
+				39,
+				41,
+				45,
+				47,
+				49,
+				52,
+				59,
+				61,
+				63,
+				75,
+				77,
+				79,
+				81,
+				83,
+				85,
+				87,
+				89,
+				90
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				2,
+				3,
+				5,
+				6,
+				8,
+				10,
+				11,
+				12,
+				14,
+				16,
+				18,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				31,
+				32,
+				34,
+				36,
+				38,
+				40,
+				42,
+				46,
+				48,
+				50,
+				51,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				60,
+				62,
+				64,
+				65,
+				66,
+				68,
+				70,
+				71,
+				72,
+				73,
+				76,
+				78,
+				80,
+				82,
+				84,
+				86,
+				88
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				4,
+				33,
+				43,
+				44,
+				67,
+				69,
+				74
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				91,
+				92
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Source/NeoIMP_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Source/Main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Listener/IListener.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Listener/ListenerList.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Listener/ListenerList.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Mvc/IController.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Mvc/IViewProducer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Common/Connection.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Connection.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Common/IConnectable.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/IConnectable.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/IDisconnector.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Data/IUidGenerator.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Common/Data/SimpleUidGenerator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Data/SimpleUidGenerator.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Common/Data/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Common/Data/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/Qt/Application.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/Qt/Application.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/IUiEntryPoint.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/EntryPoint.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/EntryPoint.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow/OnNew.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow/OnNew.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow/OnExit.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow/OnExit.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/MvcAdapter/QtView.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/MvcAdapter/QtView.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/MvcAdapter/Translate.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets/Converters.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets/Converters.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets/MeasurementEdit.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets/MeasurementEdit.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/MainWindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/MainWindow.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/NewDocumentDialog.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/NewDocumentDialog.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources/Forms.qrc",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources/Icons.qrc",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers/MainWindowProducer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers/MainWindowProducer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers/NewDocumentDialogProducer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers/NewDocumentDialogProducer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/AbstractData/IConversionContextRepository.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/AImage.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/AImage.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Math/Point2D.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Math/Vec2D.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Math/Rect.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/conversion_factors.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/IConverter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/CustomConversionContext.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/CustomConversionContext.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/LengthConverter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/LengthConverter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/ResolutionConverter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics/ResolutionConverter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Defs.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/ImageComposite.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/ImageComposite.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/ABackgroundLayer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/ABackgroundLayer.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil/Tags.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil/Traits.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil/Types.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil/BackgroundLayer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil/BackgroundLayer.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/EngineInfo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/EngineInfo.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/ImagePrefabs.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/ImagePrefabs.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/CreateImage.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/CreateImage.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/UnitConversion.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/ModelLayer/Services/UnitConversion.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/DataLayer/getComponent.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/DataLayer/getComponent.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/DataLayer/Repositories/ConversionContext.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/DataLayer/Repositories/ConversionContext.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Source/SDF/Editor/DataLayer/Repositories/ImagePrefab.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Source/SDF/Editor/DataLayer/Repositories/ImagePrefab.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Source/NeoIMP_autogen/V2QWESFCMU/qrc_Forms.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Source/NeoIMP_autogen/V2QWESFCMU/qrc_Icons.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Source/NeoIMP_autogen/V2QWESFCMU/qrc_Forms.cpp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Source/NeoIMP_autogen/V2QWESFCMU/qrc_Icons.cpp.rule",
+			"sourceGroupIndex" : 3
+		}
+	],
+	"type" : "EXECUTABLE"
+}

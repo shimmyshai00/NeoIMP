@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source/NeoIMP_autogen",
+	"CMAKE_BINARY_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/Source",
+	"CMAKE_SOURCE_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP",
+	"INCLUDE_DIR" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source/NeoIMP_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources/Forms/NewDocumentDialog.ui"
+	],
+	"LOCK_FILE" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source/CMakeFiles/NeoIMP_autogen.dir/AutoRcc_Forms_V2QWESFCMU_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "Forms" ],
+	"OUTPUT_CHECKSUM" : "V2QWESFCMU",
+	"OUTPUT_NAME" : "qrc_Forms.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt5/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build/Source/CMakeFiles/NeoIMP_autogen.dir/AutoRcc_Forms_V2QWESFCMU_Used.txt",
+	"SOURCE" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources/Forms.qrc",
+	"VERBOSITY" : 0
+}

@@ -13,13 +13,14 @@
 #include <QWidget>
 
 #include "../../../../../Common/Mvc/ServicePack.hpp"
+#include "../../../../../Common/Hsm/Hsm.hpp"
 #include "../../../../../Common/Handle.hpp"
 #include "../../../AbstractModel/Services/IGetImageLimits.hpp"
 #include "../../../AbstractModel/Services/IGetImagePrefab.hpp"
 #include "../../../AbstractModel/Services/IConversionContextManipulator.hpp"
 #include "../../../AbstractModel/Services/IConvertLength.hpp"
 #include "../../../AbstractModel/Services/IConvertResolution.hpp"
-#include "../MvcAdapter/QtView.hpp"
+#include "HsmManagedView.hpp"
 
 namespace Ui {
     class NewDocumentDialog;
@@ -28,7 +29,7 @@ namespace Ui {
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     // CLASS:   NewDocumentDialog
     // PURPOSE: Defines a dialog for getting the information required to create a new image document from the user.
-    class NewDocumentDialog : public MvcAdapter::QtView<QDialog, NewDocumentDialog> {
+    class NewDocumentDialog : public HsmManagedView<QDialog, NewDocumentDialog> {
         Q_OBJECT
        public:
         typedef Common::Mvc::ServicePack<AbstractModel::Services::IGetImageLimits,
@@ -40,10 +41,10 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
 
        public:
         NewDocumentDialog(deps_t a_deps, QWidget *a_parent = nullptr);
-        ~NewDocumentDialog();
-
        private:
-        deps_t m_services;
+        friend class NewDocumentDialogRootState;
+
+        View::NewDocumentDialog::deps_t m_services;
         Ui::NewDocumentDialog *m_ui;
 
         Common::Handle m_conversionContext;

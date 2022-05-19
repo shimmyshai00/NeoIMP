@@ -1,0 +1,479 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						29
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "Source",
+					"childIndexes" : 
+					[
+						2
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Source",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"build" : "Source/SDF",
+					"childIndexes" : 
+					[
+						3,
+						5
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "Source/SDF"
+				},
+				{
+					"build" : "Source/SDF/Common",
+					"childIndexes" : 
+					[
+						4
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Common"
+				},
+				{
+					"build" : "Source/SDF/Common/Data",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Common/Data"
+				},
+				{
+					"build" : "Source/SDF/Editor",
+					"childIndexes" : 
+					[
+						6,
+						7,
+						17,
+						27
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor"
+				},
+				{
+					"build" : "Source/SDF/Editor/Qt",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/Qt"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer",
+					"childIndexes" : 
+					[
+						8
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui",
+					"childIndexes" : 
+					[
+						9,
+						11
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Controller",
+					"childIndexes" : 
+					[
+						10
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Controller"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Controller/MainWindow"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt",
+					"childIndexes" : 
+					[
+						12,
+						13,
+						16
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt/MvcAdapter",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt/MvcAdapter"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt/View",
+					"childIndexes" : 
+					[
+						14,
+						15
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt/View"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 13,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/CustomWidgets"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 13,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt/View/Resources"
+				},
+				{
+					"build" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 11,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/UiLayer/Gui/Qt/ViewProducers"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer",
+					"childIndexes" : 
+					[
+						18,
+						19,
+						26
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/AbstractData",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 17,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/AbstractData"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects",
+					"childIndexes" : 
+					[
+						20,
+						21,
+						22,
+						25
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 17,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Math",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Math"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Metrics"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image",
+					"childIndexes" : 
+					[
+						23,
+						24
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Components",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 22,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Components"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 22,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Image/Gil"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/DomainObjects/Color",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/DomainObjects/Color"
+				},
+				{
+					"build" : "Source/SDF/Editor/ModelLayer/Services",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 17,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/ModelLayer/Services"
+				},
+				{
+					"build" : "Source/SDF/Editor/DataLayer",
+					"childIndexes" : 
+					[
+						28
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/DataLayer"
+				},
+				{
+					"build" : "Source/SDF/Editor/DataLayer/Repositories",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 27,
+					"projectIndex" : 0,
+					"source" : "Source/SDF/Editor/DataLayer/Repositories"
+				},
+				{
+					"build" : "QtPlugin",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16.3"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "QtPlugin",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29
+					],
+					"name" : "NeoIMP",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 29,
+					"id" : "MeasurementEditPlugin::@484c0029b9b132f62843",
+					"jsonFile" : "target-MeasurementEditPlugin-Debug-67872658eef1e1080931.json",
+					"name" : "MeasurementEditPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 29,
+					"id" : "MeasurementEditPlugin_autogen::@484c0029b9b132f62843",
+					"jsonFile" : "target-MeasurementEditPlugin_autogen-Debug-667dcf9b74605fd6f0d5.json",
+					"name" : "MeasurementEditPlugin_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NeoIMP::@43690dd2fb94c8e45e84",
+					"jsonFile" : "target-NeoIMP-Debug-acac729292bc6e4b5fb9.json",
+					"name" : "NeoIMP",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "NeoIMP_autogen::@43690dd2fb94c8e45e84",
+					"jsonFile" : "target-NeoIMP_autogen-Debug-4c3e50fa1b632f46b120.json",
+					"name" : "NeoIMP_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP/build",
+		"source" : "/home/shimmy/Programming/Desktop/NeoIMP-0.0.1/NeoIMP"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

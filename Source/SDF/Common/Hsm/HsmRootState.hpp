@@ -1,0 +1,56 @@
+#ifndef SDF_COMMON_HSM_HSMROOTSTATE_HPP
+#define SDF_COMMON_HSM_HSMROOTSTATE_HPP
+
+// (C) 2020-2022. All rights reserved. See LICENSE for legal and redistribution terms.
+//
+// AUTHOR:  Shimrra Shai
+// PROJECT: NeoIMP
+// FILE:    HsmRootState.hpp
+// PURPOSE: Defines the HsmRootState base template.
+
+#include "Impl/HsmTran.hpp"
+
+namespace SDF::Common::Hsm {
+    // CLASS:   HsmRootState
+    // PURPOSE: Defines a base template for the root state of the HSM. Each HSM state is expected to be stateless. Non-
+    //          leaf ("non-valid") states are not instantiated, but only members of the inheritance hierarchy. Moreover,
+    //          each non-leaf state must have a default substate, which is obtained by supplying a class typedef in
+    //          the inheritance with the type name "Default", e.g. "typedef class MyDerivedState1 Default;".
+    template <class T>
+    class HsmRootState {
+       public:
+        // attributes for the implementation to make it easier to traverse the tree
+        typedef void _parent_t;
+        typedef typename T::_hsm_t _hsm_t;
+        typedef typename T::_input_t _input_t;
+       public:
+        virtual ~HsmRootState() = default;
+
+        // FUNCTION: processInput
+        // PURPOSE:  Processes a given input and transitions if needed.
+        // NOTES:    None.
+        virtual void processInput(_hsm_t *a_hsm, _input_t a_input) const = 0;
+
+        // FUNCTION: enter
+        // PURPOSE:  Performs all the necessary start-up for state entry.
+        // NOTES:    Note that HSM states are expected to be stateless objects - this is why we pass a copy of the HSM
+        //           object. Any other state that needs modification during transition should be kept there.
+        virtual void enter(_hsm_t *a_hsm) const = 0;
+
+        // FUNCTION: exit
+        // PURPOSE:  Performs all the necessary tear-down for state exit.
+        // NOTES:    Same as for enter().
+        virtual void exit(_hsm_t *a_hsm) const = 0;
+
+       protected:
+        // FUNCTION: hsmTran
+        // PURPOSE:  Performs a transition of the HSM from one state to another.
+        // NOTES:    None.
+        template <class ThisT, class DestStateT>
+        void hsmTran(_hsm_t *a_hsm) {
+            Impl::HsmTran<ThisT, DestStateT, T>::execute(a_hsm);
+        }
+    };
+}  // namespace SDF::Common::Hsm
+
+#endif  // SDF_COMMON_HSM_HSMROOTSTATE_HPP
