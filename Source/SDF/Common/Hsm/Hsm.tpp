@@ -20,6 +20,7 @@ namespace SDF::Common::Hsm {
     template<class Input, class T>
     template<class RootT>
     void Hsm<Input, T>::beginHsm() {
+        printf("beginning HSM\n");
         Impl::HsmTran<RootT, RootT, T>::execute(static_cast<T *>(this));
     }
 

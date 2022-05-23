@@ -23,24 +23,29 @@ namespace SDF::Common::Hsm {
         typedef void _parent_t;
         typedef typename T::_hsm_t _hsm_t;
         typedef typename T::_input_t _input_t;
+
        public:
-        virtual ~HsmRootState() = default;
+        virtual ~HsmRootState() = 0;
 
         // FUNCTION: processInput
         // PURPOSE:  Processes a given input and transitions if needed.
         // NOTES:    None.
-        virtual void processInput(_hsm_t *a_hsm, _input_t a_input) const = 0;
+        virtual void processInput(_hsm_t *a_hsm, _input_t a_input) const {}
 
         // FUNCTION: enter
         // PURPOSE:  Performs all the necessary start-up for state entry.
         // NOTES:    Note that HSM states are expected to be stateless objects - this is why we pass a copy of the HSM
-        //           object. Any other state that needs modification during transition should be kept there.
-        virtual void enter(_hsm_t *a_hsm) const = 0;
+        //           object. Any other state that needs modification during transition should be kept there. Also note
+        //           that with the current transition implementation the enter/exit methods of your root state will not
+        //           be processed because it in effect assumes the HSM is always in that state inherently and it saves
+        //           a little extra special case handling, so you should not override any methods for the root, only
+        //           the states derived from it.
+        virtual void enter(_hsm_t *a_hsm) const {}
 
         // FUNCTION: exit
         // PURPOSE:  Performs all the necessary tear-down for state exit.
         // NOTES:    Same as for enter().
-        virtual void exit(_hsm_t *a_hsm) const = 0;
+        virtual void exit(_hsm_t *a_hsm) const {}
 
        protected:
         // FUNCTION: hsmTran
@@ -51,6 +56,9 @@ namespace SDF::Common::Hsm {
             Impl::HsmTran<ThisT, DestStateT, T>::execute(a_hsm);
         }
     };
+
+    template <class T>
+    HsmRootState<T>::~HsmRootState() {}
 }  // namespace SDF::Common::Hsm
 
 #endif  // SDF_COMMON_HSM_HSMROOTSTATE_HPP

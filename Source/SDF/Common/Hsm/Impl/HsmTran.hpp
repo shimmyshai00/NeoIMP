@@ -43,8 +43,11 @@ namespace SDF::Common::Hsm::Impl {
     template <class FromT, class ToT, class T>
     struct TranDownwardByDefaults {
         static void tranEnter(T *a_hsm) {
+            printf("default\n");
+
             // Here, we *do* have downward-pointing linkages from ToT.
-            std::conditional<std::is_base_of<HsmLeafState<ToT>, ToT>::value, TranDownward<FromT, ToT, T>,
+            std::conditional<std::is_base_of<HsmLeafState<ToT>, typename ToT::Default>::value,
+                             TranDownward<FromT, typename ToT::Default, T>,
                              TranDownwardByDefaults<FromT, typename ToT::Default, T>>::type::tranEnter(a_hsm);
         }
     };
