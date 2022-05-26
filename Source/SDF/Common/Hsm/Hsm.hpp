@@ -39,8 +39,11 @@ namespace SDF::Common::Hsm {
         // FUNCTION: stimulate
         // PURPOSE:  Stimulates the HSM with a given input.
         // NOTES:    None.
-        void stimulate(Input a_input);
+        void stimulate(const Input &a_input);
        private:
+        template<typename, typename, typename, typename>
+        friend class Impl::TranDownwardHelper;
+
         const HsmRootState<T> *m_curState;
     };
 }  // namespace SDF::Common::Hsm

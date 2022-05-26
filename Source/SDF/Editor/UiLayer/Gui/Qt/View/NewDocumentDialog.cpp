@@ -22,21 +22,83 @@
 #include "Resources/Forms/ui_NewDocumentDialog.h"
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
-    // The root for the state machine states.
+    class NewDocumentDialogRgbState;
+    class NewDocumentDialogRgbaState;
 
+    // The root for the state machine states.
     class NewDocumentDialogRootState : public Common::Hsm::HsmRootState<NewDocumentDialog> {
        public:
-        typedef class NewDocumentDialogDefaultState Default;
+        typedef NewDocumentDialogRgbState Default;
 
-        void enter(NewDocumentDialog *a_hsm) {
-            printf("entered NewDocumentDialogRootState\n");
+        void processInput(NewDocumentDialog *a_hsm, const HsmQtSignalEvent &a_input) const {
+            const auto *a_inputArgs = dynamic_cast<const HsmQtSignalEventArgs<int> *>(&a_input);
+
+            if (a_inputArgs != nullptr) {
+                // these must match the proper order of items in the list box
+                switch (std::get<0>(a_inputArgs->args)) {
+                    case 0:  // RGB
+                        hsmTran<NewDocumentDialogRootState, NewDocumentDialogRgbState>(a_hsm);
+                        break;
+                    case 1:  // RGBA
+                        hsmTran<NewDocumentDialogRootState, NewDocumentDialogRgbaState>(a_hsm);
+                        break;
+                }
+            }
         }
     };
 
-    class NewDocumentDialogDefaultState : public Common::Hsm::HsmLeafState<NewDocumentDialogRootState> {
+    // Helper methods.
+    void addBkgPresetsWithoutTransparency(QComboBox *comboBox) {
+        comboBox->clear();
+        comboBox->addItem(QComboBox::tr("White"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_WHITE);
+        comboBox->addItem(QComboBox::tr("Black"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_BLACK);
+        comboBox->addItem(QComboBox::tr("Custom"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_CUSTOM);
+    }
+
+    void addBkgPresetsWithTransparency(QComboBox *comboBox) {
+        comboBox->clear();
+        comboBox->addItem(QComboBox::tr("White"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_WHITE);
+        comboBox->addItem(QComboBox::tr("Black"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_BLACK);
+        comboBox->addItem(QComboBox::tr("Transparent"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_TRANSPARENT);
+        comboBox->addItem(QComboBox::tr("Custom"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_CUSTOM);
+    }
+
+    // The state tree for the new-document dialog comes about due to the fact that certain options are only available
+    // upon the selection or deselection of certain color models. In particular, bit depth settings and available
+    // transparency options can vary from one type of color model to the next. In fact, we only need one layer of
+    // hierarchy here so, in effect, this is really just a simple FSM, but the HSM framework is generic and can
+    // take care of it easily.
+    class NewDocumentDialogRgbState : public Common::Hsm::HsmLeafState<NewDocumentDialogRootState> {
        public:
-       void enter(NewDocumentDialog *a_hsm) {
-            printf("entered NewDocumentDialogDefaultState\n");
+        void enter(NewDocumentDialog *a_hsm) {
+            using namespace AbstractModel::Defs::Color;
+
+            // The available bit depths for the new-document dialog are entered into the list box here.
+            a_hsm->m_ui->bitDepthSelector->addItem(QObject::tr("8 bpc"), (int)COLOR_FMT_RGB24_888);
+
+            addBkgPresetsWithoutTransparency(a_hsm->m_ui->initialBackgroundSelector);
+        }
+
+        void exit(NewDocumentDialog *a_hsm) {
+            a_hsm->m_ui->initialBackgroundSelector->clear();
+            a_hsm->m_ui->bitDepthSelector->clear();
+        }
+    };
+
+    class NewDocumentDialogRgbaState : public Common::Hsm::HsmLeafState<NewDocumentDialogRootState> {
+       public:
+        void enter(NewDocumentDialog *a_hsm) {
+            using namespace AbstractModel::Defs::Color;
+
+            // The available bit depths for the new-document dialog are entered into the list box here.
+            a_hsm->m_ui->bitDepthSelector->addItem(QObject::tr("8 bpc"), (int)COLOR_FMT_RGBA32_8888);
+
+            addBkgPresetsWithTransparency(a_hsm->m_ui->initialBackgroundSelector);
+        }
+
+        void exit(NewDocumentDialog *a_hsm) {
+            a_hsm->m_ui->initialBackgroundSelector->clear();
+            a_hsm->m_ui->bitDepthSelector->clear();
         }
     };
 
@@ -65,6 +127,7 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         // Set up the dialog in the root state.
         using namespace UiLayer::AbstractModel::Defs::Metrics;
         using namespace UiLayer::AbstractModel::Defs::Image;
+        using namespace UiLayer::AbstractModel::Defs::Color;
         using namespace UiLayer::AbstractModel::Services;
 
         const float c_defaultResPpi = 72.0f;
@@ -103,12 +166,19 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         m_ui->resolutionEdit->setUnit(RESOLUTION_UNIT_PPI);
         m_ui->resolutionEdit->setQuantity(c_defaultResPpi);
 
-        // Add prefabs
+        // Add image prefabs
         std::size_t numPrefabs = m_services.get<IGetImagePrefab>()->getNumPrefabs();
         for (std::size_t i(0); i < numPrefabs; ++i) {
             QString prefabTitle = QString::fromStdString(m_services.get<IGetImagePrefab>()->getPrefabTitle(i));
             m_ui->presetSelector->addItem(prefabTitle);
         }
+
+        // Add color models
+        m_ui->colorModelSelector->addItem(QComboBox::tr("RGB"), (int)COLOR_MODEL_RGB);
+        m_ui->colorModelSelector->addItem(QComboBox::tr("RGBA"), (int)COLOR_MODEL_RGBA);
+
+        // Hook signals
+        connectToHsm(m_ui->colorModelSelector, QOverload<int>::of(&QComboBox::activated));
 
         /*
         // Hook signals

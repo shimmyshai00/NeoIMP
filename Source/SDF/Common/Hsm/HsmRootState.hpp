@@ -30,7 +30,7 @@ namespace SDF::Common::Hsm {
         // FUNCTION: processInput
         // PURPOSE:  Processes a given input and transitions if needed.
         // NOTES:    None.
-        virtual void processInput(_hsm_t *a_hsm, _input_t a_input) const {}
+        virtual void processInput(_hsm_t *a_hsm, const _input_t &a_input) const {}
 
         // FUNCTION: enter
         // PURPOSE:  Performs all the necessary start-up for state entry.
@@ -38,7 +38,7 @@ namespace SDF::Common::Hsm {
         //           object. Any other state that needs modification during transition should be kept there. Also note
         //           that with the current transition implementation the enter/exit methods of your root state will not
         //           be processed because it in effect assumes the HSM is always in that state inherently and it saves
-        //           a little extra special case handling, so you should not override any methods for the root, only
+        //           a little extra special case handling, so you should not override these methods for the root, only
         //           the states derived from it.
         virtual void enter(_hsm_t *a_hsm) const {}
 
@@ -52,7 +52,7 @@ namespace SDF::Common::Hsm {
         // PURPOSE:  Performs a transition of the HSM from one state to another.
         // NOTES:    None.
         template <class ThisT, class DestStateT>
-        void hsmTran(_hsm_t *a_hsm) {
+        void hsmTran(_hsm_t *a_hsm) const {
             Impl::HsmTran<ThisT, DestStateT, T>::execute(a_hsm);
         }
     };

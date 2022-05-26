@@ -19,13 +19,13 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
     template <class QSignalObjectT, class R, class... Args>
     QMetaObject::Connection HsmManagedView<QObjectT, T, InitArgs...>::connectToHsm(QSignalObjectT *a_qObject,
                                                                       R (QSignalObjectT::*a_signal)(Args...)) {
-        return connect(a_qObject, a_signal, [&](Args... b_args) {
+        return QObjectT::connect(a_qObject, a_signal, [&](Args... b_args) {
             HsmQtSignalEventArgs<Args...> signalEvent;
             signalEvent.qObject = a_qObject;
-            signalEvent.funcDescriptor = a_signal;
+            signalEvent.funcDescriptor = SIGNAL(a_signal);
             signalEvent.args = std::make_tuple(b_args...);
 
-            stimulate(signalEvent);
+            this->stimulate(signalEvent);
         });
     }
 }  // namespace SDF::Editor::UiLayer::Gui::Qt::View

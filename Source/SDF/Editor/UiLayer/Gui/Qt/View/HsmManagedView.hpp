@@ -19,7 +19,9 @@
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     struct HsmQtSignalEvent {
         QObject *qObject;
-        unsigned char *funcDescriptor;
+        const char *funcDescriptor;
+
+        virtual ~HsmQtSignalEvent() = default;
     };
 
     template <class... Args>

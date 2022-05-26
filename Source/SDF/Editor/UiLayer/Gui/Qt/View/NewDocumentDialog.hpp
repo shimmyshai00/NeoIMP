@@ -43,6 +43,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         NewDocumentDialog(deps_t a_deps, QWidget *a_parent = nullptr);
        private:
         friend class NewDocumentDialogRootState;
+        friend class NewDocumentDialogRgbState;
+        friend class NewDocumentDialogRgbaState;
 
         View::NewDocumentDialog::deps_t m_services;
         Ui::NewDocumentDialog *m_ui;

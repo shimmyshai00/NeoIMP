@@ -16,26 +16,26 @@
 namespace SDF::Common::Hsm::Impl {
     // Transition *downward* from the non-leaf state FromT to the leaf state ToT. Note FromT must be an ancestor of
     // ToT. This is tricky because there are no downward-pointing links from FromT, which is also why we cannot use
-    // this to do a non-leaf ToT.
-    template <class FromT, class ToT, class T>
-    struct TranDownward {
-        template <class StageU, class FromU, class ToU>
-        struct FindNextChild {
-            typedef typename std::conditional<std::is_same<typename StageU::_parent_t, FromU>::value,
-                                              StageU,
-                                              FindNextChild<typename StageU::_parent_t, FromU, ToU>>::type type;
-        };
-
+    // this to do a non-leaf ToT. Hence, to perform this leg of the transition, we must first start at the bottom of
+    // the tree, then recurse *up to* the upper node, then *on the unspool*, we call the enter() methods of each
+    // parent class.
+    template <class StageT, class FromT, class ToT, class T>
+    struct TranDownwardHelper {
         static void tranEnter(T *a_hsm) {
-            // Because there are no downward-pointing links, we have to "shoot up" from ToT to "just under" FromT.
-            HsmSingleton<ToT>::getInstance()->FindNextChild<ToT, FromT, ToT>::type::enter(a_hsm);
-            TranDownward<typename FindNextChild<ToT, FromT, ToT>::type, ToT, T>::tranEnter(a_hsm);
+            TranDownwardHelper<typename ToT::_parent_t, FromT, ToT, T>::tranEnter(a_hsm);
+            a_hsm->m_curState = HsmSingleton<ToT>::getInstance();
+            HsmSingleton<ToT>::getInstance()->StageT::enter(a_hsm);
         }
     };
 
-    template <class ToT, class T>
-    struct TranDownward<ToT, ToT, T> {
-        static void tranEnter(T *a_hsm) { printf("q2\n"); }
+    template <class FromT, class ToT, class T>
+    struct TranDownwardHelper<FromT, FromT, ToT, T> {
+        static void tranEnter(T *a_hsm) {}
+    };
+
+    template <class FromT, class ToT, class T>
+    struct TranDownward {
+        static void tranEnter(T *a_hsm) { TranDownwardHelper<ToT, FromT, ToT, T>::tranEnter(a_hsm); }
     };
 
     // Defines the special downward stroke used for a transition to a non-leaf state by transitioning to its default
@@ -79,7 +79,8 @@ namespace SDF::Common::Hsm::Impl {
         static void execute(T *a_hsm) {
             typedef typename std::common_type<FromT, ToT>::type common_t;
             TranUpward<FromT, common_t, T>::tranExit(a_hsm);
-            std::conditional<std::is_base_of<HsmLeafState<ToT>, ToT>::value, TranDownward<common_t, ToT, T>,
+            std::conditional<std::is_base_of<HsmLeafState<typename ToT::_parent_t>, ToT>::value,
+                             TranDownward<common_t, ToT, T>,
                              TranDownwardByDefaults<common_t, ToT, T>>::type::tranEnter(a_hsm);
         }
     };

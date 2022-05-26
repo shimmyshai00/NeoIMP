@@ -25,8 +25,8 @@ namespace SDF::Common::Hsm {
     }
 
     template<class Input, class T>
-    void Hsm<Input, T>::stimulate(Input a_input) {
-        m_curState->processInput(a_input);
+    void Hsm<Input, T>::stimulate(const Input &a_input) {
+        m_curState->processInput(static_cast<_hsm_t *>(this), a_input);
     }
 }  // namespace SDF::Common::Hsm
 
