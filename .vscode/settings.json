@@ -64,6 +64,7 @@
         "future": "cpp",
         "cinttypes": "cpp",
         "qwidget": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "qcombobox": "cpp"
     }
 }
