@@ -19,7 +19,44 @@
 #include "../../../AbstractModel/Defs/Metrics/ResolutionUnit.hpp"
 #include "CustomWidgets/Converters.hpp"
 #include "CustomWidgets/MeasurementEdit.hpp"
+#include "EnumListModel.hpp"
 #include "Resources/Forms/ui_NewDocumentDialog.h"
+
+namespace SDF::Editor::UiLayer::Gui::Qt::View {
+    EnumListModel<AbstractModel::Defs::Color::ColorFormat, AbstractModel::Defs::Color::COLOR_FMT_MAX>
+        g_colorFormatSubtypeNames = {{AbstractModel::Defs::Color::COLOR_FMT_RGB24_888, "8 bpc"},
+                                     {AbstractModel::Defs::Color::COLOR_FMT_RGBA32_8888, "8 bpc"}};
+
+    auto g_rgbColorFormatSubtypeNames =
+        EnumListModel<AbstractModel::Defs::Color::ColorFormat, AbstractModel::Defs::Color::COLOR_FMT_MAX>(
+            g_colorFormatSubtypeNames, [](AbstractModel::Defs::Color::ColorFormat b_item) {
+                return std::find(AbstractModel::Defs::Color::g_colorFormatsForRgb.begin(),
+                                 AbstractModel::Defs::Color::g_colorFormatsForRgb.end(),
+                                 b_item) != AbstractModel::Defs::Color::g_colorFormatsForRgb.end();
+            });
+
+    auto g_rgbaColorFormatSubtypeNames =
+        EnumListModel<AbstractModel::Defs::Color::ColorFormat, AbstractModel::Defs::Color::COLOR_FMT_MAX>(
+            g_colorFormatSubtypeNames, [](AbstractModel::Defs::Color::ColorFormat b_item) {
+                return std::find(AbstractModel::Defs::Color::g_colorFormatsForRgba.begin(),
+                                 AbstractModel::Defs::Color::g_colorFormatsForRgba.end(),
+                                 b_item) != AbstractModel::Defs::Color::g_colorFormatsForRgba.end();
+            });
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View
+
+namespace SDF::Editor::UiLayer::Gui::Qt::View {
+    EnumListModel<AbstractModel::Defs::Image::BackgroundPreset, AbstractModel::Defs::Image::PRE_BACKGROUND_MAX>
+        g_presetNames = {{AbstractModel::Defs::Image::PRE_BACKGROUND_WHITE, "White"},
+                         {AbstractModel::Defs::Image::PRE_BACKGROUND_BLACK, "Black"},
+                         {AbstractModel::Defs::Image::PRE_BACKGROUND_TRANSPARENT, "Transparent"},
+                         {AbstractModel::Defs::Image::PRE_BACKGROUND_CUSTOM, "Custom"}};
+
+    auto g_presetNamesNoTransp =
+        EnumListModel<AbstractModel::Defs::Image::BackgroundPreset, AbstractModel::Defs::Image::PRE_BACKGROUND_MAX>(
+            g_presetNames, [](AbstractModel::Defs::Image::BackgroundPreset b_item) {
+                return b_item != AbstractModel::Defs::Image::PRE_BACKGROUND_TRANSPARENT;
+            });
+}  // namespace SDF::Editor::UiLayer::Gui::Qt::View
 
 namespace SDF::Editor::UiLayer::Gui::Qt::View {
     class NewDocumentDialogRgbState;
@@ -47,22 +84,6 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
         }
     };
 
-    // Helper methods.
-    void addBkgPresetsWithoutTransparency(QComboBox *comboBox) {
-        comboBox->clear();
-        comboBox->addItem(QComboBox::tr("White"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_WHITE);
-        comboBox->addItem(QComboBox::tr("Black"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_BLACK);
-        comboBox->addItem(QComboBox::tr("Custom"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_CUSTOM);
-    }
-
-    void addBkgPresetsWithTransparency(QComboBox *comboBox) {
-        comboBox->clear();
-        comboBox->addItem(QComboBox::tr("White"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_WHITE);
-        comboBox->addItem(QComboBox::tr("Black"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_BLACK);
-        comboBox->addItem(QComboBox::tr("Transparent"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_TRANSPARENT);
-        comboBox->addItem(QComboBox::tr("Custom"), (int)AbstractModel::Defs::Image::PRE_BACKGROUND_CUSTOM);
-    }
-
     // The state tree for the new-document dialog comes about due to the fact that certain options are only available
     // upon the selection or deselection of certain color models. In particular, bit depth settings and available
     // transparency options can vary from one type of color model to the next. In fact, we only need one layer of
@@ -74,9 +95,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
             using namespace AbstractModel::Defs::Color;
 
             // The available bit depths for the new-document dialog are entered into the list box here.
-            a_hsm->m_ui->bitDepthSelector->addItem(QObject::tr("8 bpc"), (int)COLOR_FMT_RGB24_888);
-
-            addBkgPresetsWithoutTransparency(a_hsm->m_ui->initialBackgroundSelector);
+            a_hsm->m_ui->bitDepthSelector->setModel(&g_rgbColorFormatSubtypeNames);
+            a_hsm->m_ui->initialBackgroundSelector->setModel(&g_presetNamesNoTransp);
         }
 
         void exit(NewDocumentDialog *a_hsm) {
@@ -91,9 +111,8 @@ namespace SDF::Editor::UiLayer::Gui::Qt::View {
             using namespace AbstractModel::Defs::Color;
 
             // The available bit depths for the new-document dialog are entered into the list box here.
-            a_hsm->m_ui->bitDepthSelector->addItem(QObject::tr("8 bpc"), (int)COLOR_FMT_RGBA32_8888);
-
-            addBkgPresetsWithTransparency(a_hsm->m_ui->initialBackgroundSelector);
+            a_hsm->m_ui->bitDepthSelector->setModel(&g_rgbaColorFormatSubtypeNames);
+            a_hsm->m_ui->initialBackgroundSelector->setModel(&g_presetNames);
         }
 
         void exit(NewDocumentDialog *a_hsm) {

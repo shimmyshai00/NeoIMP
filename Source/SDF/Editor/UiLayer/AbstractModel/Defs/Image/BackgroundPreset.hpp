@@ -13,7 +13,8 @@ namespace SDF::Editor::UiLayer::AbstractModel::Defs::Image {
         PRE_BACKGROUND_WHITE,
         PRE_BACKGROUND_BLACK,
         PRE_BACKGROUND_TRANSPARENT,
-        PRE_BACKGROUND_CUSTOM
+        PRE_BACKGROUND_CUSTOM,
+        PRE_BACKGROUND_MAX
     };
 }  // namespace SDF::Editor::UiLayer::AbstractModel::Defs::Image
 

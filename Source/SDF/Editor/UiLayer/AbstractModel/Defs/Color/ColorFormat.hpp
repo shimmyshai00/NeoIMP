@@ -8,6 +8,8 @@
 // FILE:    ColorFormat.hpp
 // PURPOSE: Enumerates the available color formats.
 
+#include <vector>
+
 namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color {
     enum ColorFormat { 
         COLOR_FMT_RGB24_888, 
@@ -24,10 +26,12 @@ namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color {
         COLOR_MODEL_MAX 
     };
 
-    // must match with ColorFormat above
-    static const ColorModel g_colorModelsForFormats[COLOR_FMT_MAX] = {
-        COLOR_MODEL_RGB,  // COLOR_FMT_RGB24_888
-        COLOR_MODEL_RGBA  // COLOR_FMT_RGB32_8888
+    static const std::vector<ColorFormat> g_colorFormatsForRgb = {
+        COLOR_FMT_RGB24_888
+    };
+
+    static const std::vector<ColorFormat> g_colorFormatsForRgba = {
+        COLOR_FMT_RGBA32_8888
     };
 }  // namespace SDF::Editor::UiLayer::AbstractModel::Defs::Color
 
